@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Algorithm Helper</title>
+    <link type="text/css" rel="stylesheet" href="./marx.min.css">
+    <link type="text/css" rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div>
+        <label for="algorithm">Algorithm</label>
+        <select name="algorithm">
+            <option value="Conflict Expert">Conflict Expert</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="reason">Reason</label>
+        <select name="reason">
+            <option value="Narcotics">Narcotics</option>
+            <option value="Altercation (personal)">Altercation (personal)</option>
+            <option value="Group/clique/gang/crew/etc">Group/clique/gang/crew/etc</option>
+            <option value="Robbery/jumped/mugged">Robbery/jumped/mugged</option>
+            <option value="Burglary">Burglary</option>
+            <option value="Domestic Violence">Domestic Violence</option>
+            <option value="Child Abuse">Child Abuse</option>
+            <option value="Unknown">Unknown</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label for="weapons_at_scene">Weapons at scene?</label>
+        <select name="weapons_at_scene">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+    
+    <div>
+        <label for="shots_fired">Shots fired?</label>
+        <select name="shots_fired">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+    <br>
+    <ul id="data"></ul>
+
+    <script type="text/javascript" src="/bundle.js"></script>
+</body>
+</html>
