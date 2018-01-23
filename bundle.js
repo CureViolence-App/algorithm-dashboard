@@ -7298,10 +7298,6 @@ IncomingMessage.prototype._onXHRProgress = function () {
 
 var _algorithms = __webpack_require__(42);
 
-var _algorithms2 = _interopRequireDefault(_algorithms);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var selects = document.querySelectorAll('select');
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
@@ -7365,37 +7361,75 @@ function getAlgorithmInputs() {
 function runAlgorithm() {
     dataDisplay.innerHTML = 'Loading...';
     var inputs = getAlgorithmInputs();
-    var experts = (0, _algorithms2.default)({
-        reason: inputs.reason,
-        weapons_at_scene: inputs.weapons_at_scene,
-        shots_fired: inputs.shots_fired
-    }, function (data) {
-        dataDisplay.innerHTML = '';
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
 
-        try {
-            for (var _iterator3 = data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var i = _step3.value;
+    switch (inputs.algorithm) {
+        case 'Conflict Expert':
+            (0, _algorithms.ConflictExpert)({
+                reason: inputs.reason,
+                weapons_at_scene: inputs.weapons_at_scene,
+                shots_fired: inputs.shots_fired
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
 
-                dataDisplay.innerHTML += '\n                <li>' + i.count + ' - ' + i.first_name + ' ' + i.last_name + '</li>\n            ';
-            }
-        } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
+                try {
+                    for (var _iterator3 = data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var i = _step3.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.count + ' - ' + i.first_name + ' ' + i.last_name + '</li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
                 }
-            } finally {
-                if (_didIteratorError3) {
-                    throw _iteratorError3;
+            });
+            break;
+        case 'Strategy Expert':
+            (0, _algorithms.StrategyExpert)({
+                strategy: inputs.strategy
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion4 = true;
+                var _didIteratorError4 = false;
+                var _iteratorError4 = undefined;
+
+                try {
+                    for (var _iterator4 = data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                        var i = _step4.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.count + ' - ' + i.first_name + ' ' + i.last_name + '</li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError4 = true;
+                    _iteratorError4 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                            _iterator4.return();
+                        }
+                    } finally {
+                        if (_didIteratorError4) {
+                            throw _iteratorError4;
+                        }
+                    }
                 }
-            }
-        }
-    });
+            });
+            break;
+        default:
+            break;
+    }
 }
 
 /***/ }),
@@ -7408,6 +7442,7 @@ function runAlgorithm() {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.StrategyExpert = exports.ConflictExpert = undefined;
 
 var _csvtojson = __webpack_require__(43);
 
@@ -7468,7 +7503,41 @@ function ConflictExpert(_ref, callback) {
     }
 }
 
-exports.default = ConflictExpert;
+function StrategyExpert(_ref2, callback) {
+    var strategy = _ref2.strategy;
+
+    var experts = [];
+    var cache = {};
+    getData(handleData, done);
+
+    function handleData(obj) {
+        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && obj[strategy] === 'Very Effective';
+        if (filtered) {
+            if (!cache[obj.id]) {
+                cache[obj.id] = experts.length;
+                return experts.push({
+                    id: obj.id,
+                    count: 1,
+                    first_name: obj.first_name,
+                    last_name: obj.last_name
+                });
+            }
+            var pos = cache[obj.id];
+            experts[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort(function (a, b) {
+            return b.count - a.count;
+        });
+        return callback(experts);
+    }
+}
+
+exports.ConflictExpert = ConflictExpert;
+exports.StrategyExpert = StrategyExpert;
 
 /***/ }),
 /* 43 */

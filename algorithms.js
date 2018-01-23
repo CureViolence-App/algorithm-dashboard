@@ -101,4 +101,4 @@ function StrategyExpert({ strategy }, callback) {
     }
 }
 
-export default ConflictExpert
+export { ConflictExpert, StrategyExpert }
