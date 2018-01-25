@@ -27,6 +27,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     getData(handleData, done)
 
     function handleData(obj) {
+        console.time('Objects')
         let filtered = (
             obj.name === 'Chicago' &&
             (
@@ -54,6 +55,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     }
 
     function done(err) {
+        console.timeEnd('Objects')
         if (err) return console.log(err)
         experts.sort((a, b) => {
             return b.count - a.count

@@ -7298,59 +7298,36 @@ IncomingMessage.prototype._onXHRProgress = function () {
 
 var _algorithms = __webpack_require__(42);
 
+var submit = document.querySelector('input[type="submit"]');
+submit.addEventListener('click', runAlgorithm);
 var selects = document.querySelectorAll('select');
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
 
-try {
-    for (var _iterator = selects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var s = _step.value;
-
-        s.addEventListener('change', runAlgorithm);
-    }
-} catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-        }
-    } finally {
-        if (_didIteratorError) {
-            throw _iteratorError;
-        }
-    }
-}
-
+var loadingDisplay = document.querySelector('.loading-display');
 var dataDisplay = document.querySelector('#data');
-
-runAlgorithm();
 
 function getAlgorithmInputs() {
     var inputs = {};
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
     try {
-        for (var _iterator2 = selects[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var s = _step2.value;
+        for (var _iterator = selects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var s = _step.value;
 
             inputs[s.name] = s.value;
         }
     } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError = true;
+        _iteratorError = err;
     } finally {
         try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                _iterator2.return();
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
             }
         } finally {
-            if (_didIteratorError2) {
-                throw _iteratorError2;
+            if (_didIteratorError) {
+                throw _iteratorError;
             }
         }
     }
@@ -7359,7 +7336,7 @@ function getAlgorithmInputs() {
 }
 
 function runAlgorithm() {
-    dataDisplay.innerHTML = 'Loading...';
+    loadingDisplay.classList.add('loading');
     var inputs = getAlgorithmInputs();
 
     switch (inputs.algorithm) {
@@ -7368,6 +7345,39 @@ function runAlgorithm() {
                 reason: inputs.reason,
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var i = _step2.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+
+                loadingDisplay.classList.remove('loading');
+            });
+            break;
+        case 'Strategy Expert':
+            (0, _algorithms.StrategyExpert)({
+                strategy: inputs.strategy
             }, function (data) {
                 dataDisplay.innerHTML = '';
                 var _iteratorNormalCompletion3 = true;
@@ -7394,10 +7404,12 @@ function runAlgorithm() {
                         }
                     }
                 }
+
+                loadingDisplay.classList.remove('loading');
             });
             break;
-        case 'Strategy Expert':
-            (0, _algorithms.StrategyExpert)({
+        case 'Mediation Recommendation':
+            (0, _algorithms.MediationRecommendation)({
                 strategy: inputs.strategy
             }, function (data) {
                 dataDisplay.innerHTML = '';
@@ -7409,7 +7421,7 @@ function runAlgorithm() {
                     for (var _iterator4 = data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                         var i = _step4.value;
 
-                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                        dataDisplay.innerHTML += '\n                        <li>' + i.strategy + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
                     }
                 } catch (err) {
                     _didIteratorError4 = true;
@@ -7425,37 +7437,8 @@ function runAlgorithm() {
                         }
                     }
                 }
-            });
-            break;
-        case 'Mediation Recommendation':
-            (0, _algorithms.MediationRecommendation)({
-                strategy: inputs.strategy
-            }, function (data) {
-                dataDisplay.innerHTML = '';
-                var _iteratorNormalCompletion5 = true;
-                var _didIteratorError5 = false;
-                var _iteratorError5 = undefined;
 
-                try {
-                    for (var _iterator5 = data[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                        var i = _step5.value;
-
-                        dataDisplay.innerHTML += '\n                        <li>' + i.strategy + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
-                    }
-                } catch (err) {
-                    _didIteratorError5 = true;
-                    _iteratorError5 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                            _iterator5.return();
-                        }
-                    } finally {
-                        if (_didIteratorError5) {
-                            throw _iteratorError5;
-                        }
-                    }
-                }
+                loadingDisplay.classList.remove('loading');
             });
             break;
         default:
@@ -7509,6 +7492,7 @@ function ConflictExpert(_ref, callback) {
     getData(handleData, done);
 
     function handleData(obj) {
+        console.time('Objects');
         var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && obj.reason === reason && obj.weapon === weapons_at_scene && obj.shots === shots_fired;
         if (filtered) {
             if (!cache[obj.id]) {
@@ -7526,6 +7510,7 @@ function ConflictExpert(_ref, callback) {
     }
 
     function done(err) {
+        console.timeEnd('Objects');
         if (err) return console.log(err);
         experts.sort(function (a, b) {
             return b.count - a.count;

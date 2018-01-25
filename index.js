@@ -1,13 +1,11 @@
 import { ConflictExpert, StrategyExpert, MediationRecommendation } from './algorithms.js'
 
+let submit = document.querySelector('input[type="submit"]')
+submit.addEventListener('click', runAlgorithm)
 let selects = document.querySelectorAll('select')
-for (let s of selects) {
-    s.addEventListener('change', runAlgorithm)
-}
 
+let loadingDisplay = document.querySelector('.loading-display')
 let dataDisplay = document.querySelector('#data')
-
-runAlgorithm()
 
 function getAlgorithmInputs() {
     let inputs = {}
@@ -18,7 +16,7 @@ function getAlgorithmInputs() {
 }
 
 function runAlgorithm() {
-    dataDisplay.innerHTML = 'Loading...'
+    loadingDisplay.classList.add('loading')
     let inputs = getAlgorithmInputs()
 
     switch (inputs.algorithm) {
@@ -34,6 +32,7 @@ function runAlgorithm() {
                         <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
                     `
                 }
+                loadingDisplay.classList.remove('loading')
             })
             break
         case 'Strategy Expert':
@@ -46,6 +45,7 @@ function runAlgorithm() {
                         <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
                     `
                 }
+                loadingDisplay.classList.remove('loading')
             })
             break
         case 'Mediation Recommendation':
@@ -58,6 +58,7 @@ function runAlgorithm() {
                         <li>${i.strategy} <span class="data-count">${i.count}</span></li>
                     `
                 }
+                loadingDisplay.classList.remove('loading')
             })
             break
         default:

@@ -51,6 +51,7 @@ body {
 .options {
     flex: 1;
     padding: 1rem;
+    max-width: 215px;
 }
 
 .option_main {
@@ -108,18 +109,28 @@ body {
     outline: none;
     background: white;
     width: 100%;
+    cursor: pointer;
+}
+
+.option_select--red {
+    background: #F03A47;
+    border: none;
+    width: auto;
+    padding: 0.2rem 0.6rem;
+    color: white;
 }
 
 .card_right {
     background: #F6F4F3;
     flex: 3;
     padding: 1rem;
+    overflow-y: auto;
 }
 
 .data-container {
-    min-width: 100px;
+    width: fit-content;
     background: white;
-    padding: 1rem;
+    padding: 0.001rem;
     box-shadow:
         0 3px 6px rgba(0,0,0,0.16),
         0 3px 6px rgba(0,0,0,0.23);
@@ -132,16 +143,26 @@ body {
     text-transform: uppercase;
 }
 
+.loading-display {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.loading {
+    background: url('./loading.gif') center center/400%;
+}
+
 #data {
-    padding: 0 0 0 0;
-    margin: 0;
+    margin:0;
+    padding: 0;
     list-style-type: none;
 }
 
 #data > li {
     counter-increment: customlistcounter;
     width: 200px;
-    margin: 1rem 0;
+    margin: 1rem;
     font-size: 0.8rem;
     padding-bottom: 0.4rem;
     font-weight: bold;
@@ -158,8 +179,13 @@ body {
     width: 1rem;
 }
 
-#data:first-child {
+#data li:first-child {
     counter-reset: customlistcounter;
+    margin-top: 1.4rem;
+}
+
+#data li:last-child {
+    margin-bottom: 1.4rem;
 }
 
 .data-count {
