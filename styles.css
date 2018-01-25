@@ -27,11 +27,24 @@ body {
         0 3px 6px rgba(0,0,0,0.23);
 }
 
+@media(max-width:500px) {
+    .card {
+        width: 100%;
+        height: 100vh;
+    }
+}
+
 .card_header {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     background: #FFE0B5;
     padding: 0.4rem;
+}
+
+@media(max-width:500px) {
+    .card_header {
+        border-radius: 0;
+    }
 }
 
 .card_title {
@@ -47,11 +60,22 @@ body {
     align-self: stretch;
     background: white;
 }
+@media(max-width:500px) {
+    .card_dashboard {
+        flex-direction: column;
+    }
+}
 
 .options {
     flex: 1;
     padding: 1rem;
     max-width: 215px;
+    overflow-y: auto;
+}
+@media(max-width:500px) {
+    .options {
+        max-width: 100%;
+    }
 }
 
 .option_main {
@@ -125,6 +149,11 @@ body {
     flex: 3;
     padding: 1rem;
     overflow-y: auto;
+}
+@media(max-width:600px) {
+    .card_right {
+        flex: 1;
+    }
 }
 
 .data-container {
