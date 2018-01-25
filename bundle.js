@@ -7378,7 +7378,7 @@ function runAlgorithm() {
                     for (var _iterator3 = data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                         var i = _step3.value;
 
-                        dataDisplay.innerHTML += '\n                        <li>' + i.count + ' - ' + i.first_name + ' ' + i.last_name + '</li>\n                    ';
+                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
                     }
                 } catch (err) {
                     _didIteratorError3 = true;
@@ -7409,7 +7409,7 @@ function runAlgorithm() {
                     for (var _iterator4 = data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                         var i = _step4.value;
 
-                        dataDisplay.innerHTML += '\n                        <li>' + i.count + ' - ' + i.first_name + ' ' + i.last_name + '</li>\n                    ';
+                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
                     }
                 } catch (err) {
                     _didIteratorError4 = true;
@@ -7422,6 +7422,37 @@ function runAlgorithm() {
                     } finally {
                         if (_didIteratorError4) {
                             throw _iteratorError4;
+                        }
+                    }
+                }
+            });
+            break;
+        case 'Mediation Recommendation':
+            (0, _algorithms.MediationRecommendation)({
+                strategy: inputs.strategy
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
+
+                try {
+                    for (var _iterator5 = data[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var i = _step5.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.strategy + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
+                        }
+                    } finally {
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
                         }
                     }
                 }
@@ -7442,7 +7473,7 @@ function runAlgorithm() {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.StrategyExpert = exports.ConflictExpert = undefined;
+exports.MediationRecommendation = exports.StrategyExpert = exports.ConflictExpert = undefined;
 
 var _csvtojson = __webpack_require__(43);
 
@@ -7536,8 +7567,42 @@ function StrategyExpert(_ref2, callback) {
     }
 }
 
+function MediationRecommendation(_ref3, callback) {
+    var reason = _ref3.reason,
+        weapons_at_scene = _ref3.weapons_at_scene,
+        shots_fired = _ref3.shots_fired;
+
+    var mediations = [];
+    var cache = {};
+    getData(handleData, done);
+
+    function handleData(obj) {
+        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && (obj.strategy === 'Very Effective' || obj.strategy === 'Somewhat Effective');
+        if (filtered) {
+            if (!cache[obj.strategy]) {
+                cache[obj.strategy] = experts.length;
+                return mediations.push({
+                    strategy: obj.strategy,
+                    count: 1
+                });
+            }
+            var pos = cache[obj.strategy];
+            mediations[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort(function (a, b) {
+            return b.count - a.count;
+        });
+        return callback(experts);
+    }
+}
+
 exports.ConflictExpert = ConflictExpert;
 exports.StrategyExpert = StrategyExpert;
+exports.MediationRecommendation = MediationRecommendation;
 
 /***/ }),
 /* 43 */

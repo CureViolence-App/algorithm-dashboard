@@ -101,4 +101,44 @@ function StrategyExpert({ strategy }, callback) {
     }
 }
 
-export { ConflictExpert, StrategyExpert }
+function MediationRecommendation({ reason, weapons_at_scene, shots_fired }, callback) {
+    const mediations = []
+    const cache = {}
+    getData(handleData, done)
+
+    function handleData(obj) {
+        let filtered = (
+            obj.name === 'Chicago' &&
+            (
+                obj.outcome === 'Conflict resolved' ||
+                obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' ||
+                obj.outcome === 'Conflict resolved temporarily'
+            ) &&
+            (
+                obj.strategy === 'Very Effective' ||
+                obj.strategy === 'Somewhat Effective'
+            )
+        )
+        if (filtered) {
+            if (!cache[obj.strategy]){
+                cache[obj.strategy] = experts.length
+                return mediations.push({
+                    strategy: obj.strategy,
+                    count: 1
+                })
+            }
+            let pos = cache[obj.strategy]
+            mediations[pos].count++
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err)
+        experts.sort((a, b) => {
+            return b.count - a.count
+        })
+        return callback(experts)
+    }
+}
+
+export { ConflictExpert, StrategyExpert, MediationRecommendation }

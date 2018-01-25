@@ -7,76 +7,85 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="./marx.min.css">
     <link type="text/css" rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="card">
-        <div class="card_top">
-        <h1 class="card_header">Cure Violence Algorithms</h1>
-        
-        <div class="option">
-            <label class="option_label" for="algorithm">Algorithm</label>
-            <select class="option_select" name="algorithm">
-                <option value="Conflict Expert">Conflict Expert</option>
-                <option value="Strategy Expert">Strategy Expert</option>
-            </select>
+        <div class="card_header">
         </div>
+        <div class="card_dashboard">
+            <div class="options">
+                <div class="option_main">
+                    <div class="option_icon">
+                        <img src="./algorithm.png">
+                    </div>
+                    <div class="option">
+                        <label class="option_label" for="algorithm">Algorithm</label>
+                        <select class="option_select" name="algorithm">
+                            <option value="Conflict Expert">Conflict Expert</option>
+                            <option value="Strategy Expert">Strategy Expert</option>
+                            <option vale="Mediation Recommendation">Mediation Recommendation</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="option">
+                    <label class="option_label" for="strategy">Strategy</label>
+                    <select class="option_select" name="strategy">
+                        <option value="buy_time">Buy Time</option>
+                        <option value="change_location">Change Location</option>
+                        <option value="constructive_shadowing">Constructive Shadowing</option>
+                        <option value="keep_credibility">Created Opportunity to Keep Credibility</option>
+                        <option value="de_escalating">De-escalating the Situation</option>
+                        <option value="focus_on_consequences">Focus on Consequences</option>
+                        <option value="information_gathering">Information Gathering</option>
+                        <option value="middle_man">Middle Man</option>
+                        <option value="other">Other</option>
+                        <option value="reaching_agreement">Reaching Agreement</option>
+                        <option value="reasoning">Reasoning/Alternate Solution</option>
+                        <option value="other_cv_staff">Using CV Staff from Other Sites</option>
+                        <option value="family_friends">Using Family/Friends</option>
+                        <option value="cv_participants">Using Other CV Participants</option>
+                    </select>
+                </div>
 
-        <div class="option">
-            <label class="option_label" for="strategy">Strategy</label>
-            <select class="option_select" name="strategy">
-                <option value="buy_time">Buy Time</option>
-                <option value="change_location">Change Location</option>
-                <option value="constructive_shadowing">Constructive Shadowing</option>
-                <option value="keep_credibility">Created Opportunity to Keep Credibility</option>
-                <option value="de_escalating">De-escalating the Situation</option>
-                <option value="focus_on_consequences">Focus on Consequences</option>
-                <option value="information_gathering">Information Gathering</option>
-                <option value="middle_man">Middle Man</option>
-                <option value="other">Other</option>
-                <option value="reaching_agreement">Reaching Agreement</option>
-                <option value="reasoning">Reasoning/Alternate Solution</option>
-                <option value="other_cv_staff">Using CV Staff from Other Sites</option>
-                <option value="family_friends">Using Family/Friends</option>
-                <option value="cv_participants">Using Other CV Participants</option>
-            </select>
+                <div class="option">
+                    <label class="option_label" for="reason">Reason</label>
+                    <select class="option_select" name="reason">
+                        <option value="Narcotics">Narcotics</option>
+                        <option value="Altercation (personal)">Altercation (personal)</option>
+                        <option value="Group/clique/gang/crew/etc.">Group/clique/gang/crew/etc.</option>
+                        <option value="Robbery/Jumped/Mugged">Robbery/Jumped/Mugged</option>
+                        <option value="Burglary">Burglary</option>
+                        <option value="Domestic Violence">Domestic Violence</option>
+                        <option value="Child Abuse">Child Abuse</option>
+                        <option value="Unknown">Unknown</option>
+                        <option value="Other (specify):">Other (specify):</option>
+                    </select>
+                </div>
+                <div class="option">
+                    <label class="option_label" for="weapons_at_scene">Weapons at scene?</label>
+                    <select class="option_select" name="weapons_at_scene">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+                <div class="option">
+                    <label class="option_label" for="shots_fired">Shots fired?</label>
+                    <select class="option_select" name="shots_fired">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <br>
+            </div>
+            <div class="card_right">
+                <h2 class="data-header">Output</h2>
+                <div class="data-container">
+                    <ol id="data"></ol>
+                </div>
+            </div>
         </div>
-
-        <div class="option">
-            <label class="option_label" for="reason">Reason</label>
-            <select class="option_select" name="reason">
-                <option value="Narcotics">Narcotics</option>
-                <option value="Altercation (personal)">Altercation (personal)</option>
-                <option value="Group/clique/gang/crew/etc.">Group/clique/gang/crew/etc.</option>
-                <option value="Robbery/Jumped/Mugged">Robbery/Jumped/Mugged</option>
-                <option value="Burglary">Burglary</option>
-                <option value="Domestic Violence">Domestic Violence</option>
-                <option value="Child Abuse">Child Abuse</option>
-                <option value="Unknown">Unknown</option>
-                <option value="Other (specify):">Other (specify):</option>
-            </select>
-        </div>
-        <div class="option">
-            <label class="option_label" for="weapons_at_scene">Weapons at scene?</label>
-            <select class="option_select" name="weapons_at_scene">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </div>
-        
-        <div class="option">
-            <label class="option_label" for="shots_fired">Shots fired?</label>
-            <select class="option_select" name="shots_fired">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </div>
-        <br>
-    </div>
-    <div class="card_bottom">
-        <ul id="data"></ul
-    </div>
     </div>
 
     <script type="text/javascript" src="./bundle.js"></script>

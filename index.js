@@ -1,4 +1,4 @@
-import { ConflictExpert, StrategyExpert } from './algorithms.js'
+import { ConflictExpert, StrategyExpert, MediationRecommendation } from './algorithms.js'
 
 let selects = document.querySelectorAll('select')
 for (let s of selects) {
@@ -31,7 +31,7 @@ function runAlgorithm() {
                 dataDisplay.innerHTML = ''
                 for (let i of data) {
                     dataDisplay.innerHTML += `
-                        <li>${i.count} - ${i.first_name} ${i.last_name}</li>
+                        <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
                     `
                 }
             })
@@ -43,7 +43,19 @@ function runAlgorithm() {
                 dataDisplay.innerHTML = ''
                 for (let i of data) {
                     dataDisplay.innerHTML += `
-                        <li>${i.count} - ${i.first_name} ${i.last_name}</li>
+                        <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
+                    `
+                }
+            })
+            break
+        case 'Mediation Recommendation':
+            MediationRecommendation({
+                strategy: inputs.strategy
+            }, data => {
+                dataDisplay.innerHTML = ''
+                for (let i of data) {
+                    dataDisplay.innerHTML += `
+                        <li>${i.strategy} <span class="data-count">${i.count}</span></li>
                     `
                 }
             })
