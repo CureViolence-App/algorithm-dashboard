@@ -50,7 +50,9 @@ function runAlgorithm() {
             break
         case 'Mediation Recommendation':
             MediationRecommendation({
-                strategy: inputs.strategy
+                reason: inputs.reason,
+                weapons_at_scene: inputs.weapons_at_scene,
+                shots_fired: inputs.shots_fired
             }, data => {
                 dataDisplay.innerHTML = ''
                 for (let i of data) {
