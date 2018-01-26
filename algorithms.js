@@ -24,6 +24,7 @@ function getData(callback, done) {
 function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     const experts = []
     const cache = {}
+
     getData(handleData, done)
 
     function handleData(obj) {
@@ -38,7 +39,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
             obj.weapon === weapons_at_scene &&
             obj.shots  === shots_fired
         )
-        if (filtered) {
+        if (filtered) { //hello
             if (!cache[obj.id]){
                 cache[obj.id] = experts.length
                 return experts.push({
