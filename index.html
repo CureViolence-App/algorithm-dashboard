@@ -24,11 +24,11 @@
                         <select class="option_select" name="algorithm">
                             <option value="Conflict Expert">Conflict Expert</option>
                             <option value="Strategy Expert">Strategy Expert</option>
-                            <option vale="Mediation Recommendation">Mediation Recommendation</option>
+                            <option vale="Strategy Recommendation">Strategy Recommendation</option>
                         </select>
                     </div>
                 </div>
-                <div class="option">
+                <div class="option" style="display: none;">
                     <label class="option_label" for="strategy">Strategy</label>
                     <select class="option_select" name="strategy">
                         <option value="buy_time">Buy Time</option>
@@ -78,12 +78,38 @@
                     </select>
                 </div>
 
+                <div class="option" style="display: none;">
+                    <label class="option_label" for="num_persons">Number of Persons</label>
+                    <select class="option_select" name="num_persons">
+                        <option value="1-2">1&ndash;2</option>
+                        <option value="3-19">3&ndash;19</option>
+                        <option value="20+">20+</option>
+                    </select>
+                </div>
+
+                <div class="option" style="display: none;">
+                    <label class="option_label" for="num_groups">Number of Groups</label>
+                    <select class="option_select" name="num_groups">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2+">2+</option>
+                    </select>
+                </div>
+
                 <input class="option_select option_select--red" type="submit">
             </div>
             <div class="card_right">
-                <h2 class="data-header">Output <span class="loading-display"></span></h2>
-                <div class="data-container">
-                    <ol id="data"></ol>
+                <div>
+                    <h2 class="data-header">Snapshot Data<span class="loading-display"></span></h2>
+                    <div class="data-container">
+                        <ol id="data"></ol>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="data-header">Live Data<span class="loading-display"></span></h2>
+                    <div class="data-container">
+                        <ol id="data-live"></ol>
+                    </div>
                 </div>
             </div>
         </div>

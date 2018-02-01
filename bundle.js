@@ -60,419 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _algorithms = __webpack_require__(1);
-
-var submit = document.querySelector('input[type="submit"]');
-submit.addEventListener('click', runAlgorithm);
-var selects = document.querySelectorAll('select');
-
-var loadingDisplay = document.querySelector('.loading-display');
-var dataDisplay = document.querySelector('#data');
-
-function getAlgorithmInputs() {
-    var inputs = {};
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = selects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var s = _step.value;
-
-            inputs[s.name] = s.value;
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-
-    return inputs;
-}
-
-function runAlgorithm() {
-    loadingDisplay.classList.add('loading');
-    var inputs = getAlgorithmInputs();
-
-    switch (inputs.algorithm) {
-        case 'Conflict Expert':
-            (0, _algorithms.ConflictExpert)({
-                reason: inputs.reason,
-                weapons_at_scene: inputs.weapons_at_scene,
-                shots_fired: inputs.shots_fired
-            }, function (data) {
-                dataDisplay.innerHTML = '';
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var i = _step2.value;
-
-                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-
-                loadingDisplay.classList.remove('loading');
-            });
-            break;
-        case 'Strategy Expert':
-            (0, _algorithms.StrategyExpert)({
-                strategy: inputs.strategy
-            }, function (data) {
-                dataDisplay.innerHTML = '';
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                    for (var _iterator3 = data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                        var i = _step3.value;
-
-                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
-                    }
-                } catch (err) {
-                    _didIteratorError3 = true;
-                    _iteratorError3 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                            _iterator3.return();
-                        }
-                    } finally {
-                        if (_didIteratorError3) {
-                            throw _iteratorError3;
-                        }
-                    }
-                }
-
-                loadingDisplay.classList.remove('loading');
-            });
-            break;
-        case 'Mediation Recommendation':
-            (0, _algorithms.MediationRecommendation)({
-                reason: inputs.reason,
-                weapons_at_scene: inputs.weapons_at_scene,
-                shots_fired: inputs.shots_fired
-            }, function (data) {
-                dataDisplay.innerHTML = '';
-                var _iteratorNormalCompletion4 = true;
-                var _didIteratorError4 = false;
-                var _iteratorError4 = undefined;
-
-                try {
-                    for (var _iterator4 = data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                        var i = _step4.value;
-
-                        dataDisplay.innerHTML += '\n                        <li>' + i.strategy + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
-                    }
-                } catch (err) {
-                    _didIteratorError4 = true;
-                    _iteratorError4 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                            _iterator4.return();
-                        }
-                    } finally {
-                        if (_didIteratorError4) {
-                            throw _iteratorError4;
-                        }
-                    }
-                }
-
-                loadingDisplay.classList.remove('loading');
-            });
-            break;
-        default:
-            break;
-    }
-}
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.MediationRecommendation = exports.StrategyExpert = exports.ConflictExpert = undefined;
-
-var _csvtojson = __webpack_require__(43);
-
-var _csvtojson2 = _interopRequireDefault(_csvtojson);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function loadCSV(callback) {
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType('application/css');
-    xobj.open('GET', './mediations.csv', true);
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            callback(xobj.responseText);
-        }
-    };
-    xobj.send(null);
-}
-
-function getData(callback, done) {
-    return loadCSV(function (csvAsText) {
-        (0, _csvtojson2.default)().fromString(csvAsText).on('json', callback).on('done', done);
-    });
-}
-
-function ConflictExpert(_ref, callback) {
-    var reason = _ref.reason,
-        weapons_at_scene = _ref.weapons_at_scene,
-        shots_fired = _ref.shots_fired;
-
-    var experts = [];
-    var cache = {};
-    getData(handleData, done);
-
-    function handleData(obj) {
-        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && obj.reason === reason && obj.weapon === weapons_at_scene && obj.shots === shots_fired;
-        if (filtered) {
-            if (!cache[obj.id]) {
-                cache[obj.id] = experts.length;
-                return experts.push({
-                    id: obj.id,
-                    count: 1,
-                    first_name: obj.first_name,
-                    last_name: obj.last_name
-                });
-            }
-            var pos = cache[obj.id];
-            experts[pos].count++;
-        }
-    }
-
-    function done(err) {
-        if (err) return console.log(err);
-        experts.sort(function (a, b) {
-            return b.count - a.count;
-        });
-        return callback(experts);
-    }
-}
-
-function StrategyExpert(_ref2, callback) {
-    var strategy = _ref2.strategy;
-
-    var experts = [];
-    var cache = {};
-    getData(handleData, done);
-
-    function handleData(obj) {
-        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && (obj[strategy] === 'Very Effective' || obj[strategy] === 'Somewhat Effective');
-        if (filtered) {
-            if (!cache[obj.id]) {
-                cache[obj.id] = experts.length;
-                return experts.push({
-                    id: obj.id,
-                    count: 1,
-                    first_name: obj.first_name,
-                    last_name: obj.last_name
-                });
-            }
-            var pos = cache[obj.id];
-            experts[pos].count++;
-        }
-    }
-
-    function done(err) {
-        if (err) return console.log(err);
-        experts.sort(function (a, b) {
-            return b.count - a.count;
-        });
-        return callback(experts);
-    }
-}
-
-function MediationRecommendation(_ref3, callback) {
-    var reason = _ref3.reason,
-        weapons_at_scene = _ref3.weapons_at_scene,
-        shots_fired = _ref3.shots_fired;
-
-    var cache = {};
-    var strategies = ['buy_time', 'change_location', 'constructive_shadowing', 'cv_participants', 'de_escalating', 'family_friends', 'focus_on_consequences', 'information_gathering', 'keep_credibility', 'middle_man', 'other', 'other_cv_staff', 'reaching_agreement', 'reasoning', 'change_location'];
-
-    getData(handleData, done);
-
-    function checkStrategies(obj) {
-        var check = [];
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = strategies[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var strategy = _step.value;
-
-                if (obj[strategy] === 'Very Effective' || obj[strategy] === 'Somewhat Effective') {
-                    check.push(true);
-                } else {
-                    check.push(false);
-                }
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        if (check.includes(true)) {
-            return true;
-        }
-        return false;
-        /*
-            return (
-                (
-                    obj.buy_time === 'Very Effective' ||
-                    obj.buy_time === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.change_location === 'Very Effective' ||
-                    obj.change_location === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.constructive_shadowing === 'Very Effective' ||
-                    obj.constructive_shadowing === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.cv_participants === 'Very Effective' ||
-                    obj.cv_participants === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.de_escalating === 'Very Effective' ||
-                    obj.de_escalating === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.family_friends === 'Very Effective' ||
-                    obj.family_friends === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.focus_on_consequences === 'Very Effective' ||
-                    obj.focus_on_consequences === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.information_gathering === 'Very Effective' ||
-                    obj.information_gathering === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.keep_credibility === 'Very Effective' ||
-                    obj.keep_credibility=== 'Somewhat Effective'
-                ) ||
-                (
-                    obj.middle_man === 'Very Effective' ||
-                    obj.middle_man === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.other === 'Very Effective' ||
-                    obj.other === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.other_cv_staff === 'Very Effective' ||
-                    obj.other_cv_staff === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.reaching_agreement === 'Very Effective' ||
-                    obj.reaching_agreement === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.reasoning === 'Very Effective' ||
-                    obj.reasoning === 'Somewhat Effective'
-                ) ||
-                (
-                    obj.change_location === 'Very Effective' ||
-                    obj.change_location === 'Somewhat Effective'
-                )
-            )
-            */
-    }
-
-    function handleData(obj) {
-        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && checkStrategies(obj) // if equals 'Very Effective' or 'Somewhat Effective'
-        && (obj.reason = reason, obj.weapon = weapons_at_scene, obj.shots = shots_fired);
-        if (filtered) {
-            console.log(obj.id);
-            /*
-            cache = {
-             }
-            if (!cache[obj.strategy]){
-                cache[obj.strategy] = experts.length
-                return mediations.push({
-                    strategy: obj.strategy,
-                    count: 1
-                })
-            }
-            let pos = cache[obj.strategy]
-            mediations[pos].count++
-            */
-        }
-    }
-
-    function done(err) {
-        if (err) return console.log(err);
-        mediations.sort(function (a, b) {
-            return b.count - a.count;
-        });
-        return callback(mediations);
-    }
-}
-
-exports.ConflictExpert = ConflictExpert;
-exports.StrategyExpert = StrategyExpert;
-exports.MediationRecommendation = MediationRecommendation;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 var g;
@@ -499,7 +91,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -689,7 +281,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -705,7 +297,7 @@ process.umask = function() { return 0; };
 
 var base64 = __webpack_require__(45)
 var ieee754 = __webpack_require__(46)
-var isArray = __webpack_require__(26)
+var isArray = __webpack_require__(24)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2483,10 +2075,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -2515,7 +2107,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2549,7 +2141,7 @@ if (typeof Object.create === 'function') {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(7);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -2564,12 +2156,12 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(8);
-util.inherits = __webpack_require__(5);
+var util = __webpack_require__(6);
+util.inherits = __webpack_require__(3);
 /*</replacement>*/
 
-var Readable = __webpack_require__(28);
-var Writable = __webpack_require__(17);
+var Readable = __webpack_require__(26);
+var Writable = __webpack_require__(15);
 
 util.inherits(Duplex, Readable);
 
@@ -2645,20 +2237,20 @@ function forEach(xs, f) {
 }
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(28);
+exports = module.exports = __webpack_require__(26);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(17);
-exports.Duplex = __webpack_require__(6);
-exports.Transform = __webpack_require__(32);
+exports.Writable = __webpack_require__(15);
+exports.Duplex = __webpack_require__(4);
+exports.Transform = __webpack_require__(30);
 exports.PassThrough = __webpack_require__(54);
 
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -2769,10 +2361,10 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2820,14 +2412,14 @@ function nextTick(fn, arg1, arg2, arg3) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(4)
+var buffer = __webpack_require__(2)
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -2891,10 +2483,10 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(19);
+var getNative = __webpack_require__(17);
 
 /* Built-in method references that are verified to be native. */
 var nativeCreate = getNative(Object, 'create');
@@ -2903,10 +2495,10 @@ module.exports = nativeCreate;
 
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var eq = __webpack_require__(38);
+var eq = __webpack_require__(36);
 
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -2930,7 +2522,7 @@ module.exports = assocIndexOf;
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isKeyable = __webpack_require__(112);
@@ -2954,12 +2546,12 @@ module.exports = getMapData;
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer) {var util = __webpack_require__(15);
-var Transform = __webpack_require__(27).Transform;
-var os = __webpack_require__(33);
+/* WEBPACK VAR INJECTION */(function(process, Buffer) {var util = __webpack_require__(13);
+var Transform = __webpack_require__(25).Transform;
+var os = __webpack_require__(31);
 var stripBom = __webpack_require__(59);
 var eol = os.EOL;
 // var Processor = require("./Processor.js");
@@ -2967,10 +2559,10 @@ var defParam = __webpack_require__(62);
 var fileline = __webpack_require__(63);
 var fileLineToCSVLine = __webpack_require__(64);
 var linesToJson = __webpack_require__(67);
-var CSVError = __webpack_require__(18);
+var CSVError = __webpack_require__(16);
 var workerMgr = null;
 var _ = __webpack_require__(121);
-var rowSplit = __webpack_require__(35);
+var rowSplit = __webpack_require__(33);
 function Converter(params, options) {
   Transform.call(this, options);
   this._options = options || {};
@@ -3267,7 +2859,7 @@ Converter.prototype.processHead = function (fileLine, cb) {
     }
   }
   configIgnoreIncludeColumns(params);
-  params._headers = __webpack_require__(36)(params._headers, params);
+  params._headers = __webpack_require__(34)(params._headers, params);
   if (this._needEmitHeader && this.param._headers) {
     this.emit("header", this.param._headers);
   }
@@ -3526,10 +3118,10 @@ Converter.prototype.wrapCallback = function (cb, clean) {
 
 module.exports = Converter;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(2).Buffer))
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -4119,10 +3711,10 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -4430,7 +4022,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4463,7 +4055,7 @@ function isUndefined(arg) {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(7);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -4500,8 +4092,8 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(8);
-util.inherits = __webpack_require__(5);
+var util = __webpack_require__(6);
+util.inherits = __webpack_require__(3);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -4511,11 +4103,11 @@ var internalUtil = {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(29);
+var Stream = __webpack_require__(27);
 /*</replacement>*/
 
 /*<replacement>*/
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(8).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -4525,14 +4117,14 @@ function _isUint8Array(obj) {
 }
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(30);
+var destroyImpl = __webpack_require__(28);
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(6);
+  Duplex = Duplex || __webpack_require__(4);
 
   options = options || {};
 
@@ -4672,7 +4264,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(6);
+  Duplex = Duplex || __webpack_require__(4);
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -5098,13 +4690,13 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(51).setImmediate, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(51).setImmediate, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var util = __webpack_require__(15);
+var util = __webpack_require__(13);
 module.exports = CSVError;
 function CSVError(err, index, extra) {
   Error.call(this, "");
@@ -5134,7 +4726,7 @@ CSVError.fromArray = function(arr) {
 
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsNative = __webpack_require__(81),
@@ -5157,10 +4749,10 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(21);
+var root = __webpack_require__(19);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -5169,7 +4761,7 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var freeGlobal = __webpack_require__(83);
@@ -5184,7 +4776,7 @@ module.exports = root;
 
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -5221,7 +4813,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /**
@@ -5253,10 +4845,10 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(37),
+var baseGetTag = __webpack_require__(35),
     isObjectLike = __webpack_require__(92);
 
 /** `Object#toString` result references. */
@@ -5288,11 +4880,11 @@ module.exports = isSymbol;
 
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = constructor;
-module.exports.Converter = __webpack_require__(14);
+module.exports.Converter = __webpack_require__(12);
 
 function constructor(param,options) {
   return new module.exports.Converter(param, options);
@@ -5300,7 +4892,7 @@ function constructor(param,options) {
 
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -5311,7 +4903,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -5337,11 +4929,11 @@ module.exports = Array.isArray || function (arr) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(16).EventEmitter;
-var inherits = __webpack_require__(5);
+var EE = __webpack_require__(14).EventEmitter;
+var inherits = __webpack_require__(3);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(7);
+Stream.Readable = __webpack_require__(5);
 Stream.Writable = __webpack_require__(55);
 Stream.Duplex = __webpack_require__(56);
 Stream.Transform = __webpack_require__(57);
@@ -5444,7 +5036,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5473,13 +5065,13 @@ Stream.prototype.pipe = function(dest, options) {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(7);
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(26);
+var isArray = __webpack_require__(24);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -5489,7 +5081,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(16).EventEmitter;
+var EE = __webpack_require__(14).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -5497,13 +5089,13 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(29);
+var Stream = __webpack_require__(27);
 /*</replacement>*/
 
 // TODO(bmeurer): Change this back to const once hole checks are
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(8).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -5514,8 +5106,8 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(8);
-util.inherits = __webpack_require__(5);
+var util = __webpack_require__(6);
+util.inherits = __webpack_require__(3);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -5529,7 +5121,7 @@ if (debugUtil && debugUtil.debuglog) {
 /*</replacement>*/
 
 var BufferList = __webpack_require__(50);
-var destroyImpl = __webpack_require__(30);
+var destroyImpl = __webpack_require__(28);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -5551,7 +5143,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(6);
+  Duplex = Duplex || __webpack_require__(4);
 
   options = options || {};
 
@@ -5612,14 +5204,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(31).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(29).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(6);
+  Duplex = Duplex || __webpack_require__(4);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -5768,7 +5360,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(31).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(29).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -6455,17 +6047,17 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16).EventEmitter;
+module.exports = __webpack_require__(14).EventEmitter;
 
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6473,7 +6065,7 @@ module.exports = __webpack_require__(16).EventEmitter;
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(7);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -6543,13 +6135,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(8).Buffer;
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
   encoding = '' + encoding;
@@ -6821,7 +6413,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 32 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6892,11 +6484,11 @@ function simpleEnd(buf) {
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(6);
+var Duplex = __webpack_require__(4);
 
 /*<replacement>*/
-var util = __webpack_require__(8);
-util.inherits = __webpack_require__(5);
+var util = __webpack_require__(6);
+util.inherits = __webpack_require__(3);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -7041,7 +6633,7 @@ function done(stream, er, data) {
 }
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -7096,11 +6688,11 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //return eol from a data chunk.
-var eol = __webpack_require__(33).EOL;
+var eol = __webpack_require__(31).EOL;
 module.exports = function(data, param) {
   if (!param.eol && data) {
     for (var i = 0, len = data.length; i < len; i++) {
@@ -7122,11 +6714,11 @@ module.exports = function(data, param) {
 
 
 /***/ }),
-/* 35 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getDelimiter = __webpack_require__(66);
-var filterRow=__webpack_require__(36);
+var filterRow=__webpack_require__(34);
 /**
  * Convert a line of string to csv columns according to its delimiter
  * the param._header may not be ready when this is called.
@@ -7259,7 +6851,7 @@ function _escapeQuote(segment, quote, escape) {
 
 
 /***/ }),
-/* 36 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports=function filterRow(row, param) {
@@ -7283,10 +6875,10 @@ module.exports=function filterRow(row, param) {
 }
 
 /***/ }),
-/* 37 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(20),
+var Symbol = __webpack_require__(18),
     getRawTag = __webpack_require__(84),
     objectToString = __webpack_require__(85);
 
@@ -7317,7 +6909,7 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 38 */
+/* 36 */
 /***/ (function(module, exports) {
 
 /**
@@ -7360,7 +6952,7 @@ module.exports = eq;
 
 
 /***/ }),
-/* 39 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -7388,13 +6980,13 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
@@ -7471,15 +7063,15 @@ function isFunction (value) {
 
 xhr = null // Help gc
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(41)
-var inherits = __webpack_require__(5)
-var stream = __webpack_require__(7)
+/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(39)
+var inherits = __webpack_require__(3)
+var stream = __webpack_require__(5)
 
 var rStates = exports.readyStates = {
 	UNSENT: 0,
@@ -7695,7 +7287,401 @@ IncomingMessage.prototype._onXHRProgress = function () {
 	}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4).Buffer, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(2).Buffer, __webpack_require__(0)))
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _algorithms = __webpack_require__(42);
+
+var submit = document.querySelector('input[type="submit"]');
+submit.addEventListener('click', runAlgorithm);
+var selects = document.querySelectorAll('select');
+
+var algorithmOption = document.querySelector('select[name="algorithm"]');
+algorithmOption.addEventListener('change', showInputs);
+showInputs({ srcElement: { value: 'Conflict Expert' } });
+
+var loadingDisplay = document.querySelector('.loading-display');
+var dataDisplay = document.querySelector('#data');
+
+function searchNodeListByName(nodelist, name) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = nodelist[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var i = _step.value;
+
+            if (i.name === name) return i;
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    throw new Error('Not found in nodelist');
+}
+
+function showInputs(e) {
+    switch (e.srcElement.value) {
+        case 'Conflict Expert':
+            searchNodeListByName(selects, 'strategy').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'reason').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'weapons_at_scene').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'shots_fired').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'num_persons').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'num_groups').parentElement.style.display = "none";
+            break;
+        case 'Strategy Expert':
+            searchNodeListByName(selects, 'strategy').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'reason').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'weapons_at_scene').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'shots_fired').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'num_persons').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'num_groups').parentElement.style.display = "none";
+            break;
+        case 'Strategy Recommendation':
+            searchNodeListByName(selects, 'strategy').parentElement.style.display = "none";
+            searchNodeListByName(selects, 'reason').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'weapons_at_scene').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'shots_fired').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'num_persons').parentElement.style.display = "flex";
+            searchNodeListByName(selects, 'num_groups').parentElement.style.display = "flex";
+            break;
+    }
+}
+
+function getAlgorithmInputs() {
+    var inputs = {};
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+        for (var _iterator2 = selects[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var s = _step2.value;
+
+            inputs[s.name] = s.value;
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
+
+    return inputs;
+}
+
+function runAlgorithm() {
+    loadingDisplay.classList.add('loading');
+    var inputs = getAlgorithmInputs();
+
+    switch (inputs.algorithm) {
+        case 'Conflict Expert':
+            (0, _algorithms.ConflictExpert)({
+                reason: inputs.reason,
+                weapons_at_scene: inputs.weapons_at_scene,
+                shots_fired: inputs.shots_fired
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                    for (var _iterator3 = data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var i = _step3.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
+                }
+
+                loadingDisplay.classList.remove('loading');
+            });
+            break;
+        case 'Strategy Expert':
+            (0, _algorithms.StrategyExpert)({
+                strategy: inputs.strategy
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion4 = true;
+                var _didIteratorError4 = false;
+                var _iteratorError4 = undefined;
+
+                try {
+                    for (var _iterator4 = data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                        var i = _step4.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.first_name + ' ' + i.last_name + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError4 = true;
+                    _iteratorError4 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                            _iterator4.return();
+                        }
+                    } finally {
+                        if (_didIteratorError4) {
+                            throw _iteratorError4;
+                        }
+                    }
+                }
+
+                loadingDisplay.classList.remove('loading');
+            });
+            break;
+        case 'Strategy Recommendation':
+            (0, _algorithms.StrategyRecommendation)({
+                reason: inputs.reason,
+                weapons_at_scene: inputs.weapons_at_scene,
+                shots_fired: inputs.shots_fired,
+                num_persons: inputs.num_persons,
+                num_groups: inputs.num_groups
+            }, function (data) {
+                dataDisplay.innerHTML = '';
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
+
+                try {
+                    for (var _iterator5 = data[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var i = _step5.value;
+
+                        dataDisplay.innerHTML += '\n                        <li>' + i.strategy + ' <span class="data-count">' + i.count + '</span></li>\n                    ';
+                    }
+                } catch (err) {
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
+                        }
+                    } finally {
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
+                        }
+                    }
+                }
+
+                loadingDisplay.classList.remove('loading');
+            });
+            break;
+        default:
+            break;
+    }
+}
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.StrategyRecommendation = exports.StrategyExpert = exports.ConflictExpert = undefined;
+
+var _getData = __webpack_require__(140);
+
+(0, _getData.getAPIData)({ type: 'getAllUsers' }, function (data) {
+    console.log(data);
+});
+
+function ConflictExpert(_ref, callback) {
+    var reason = _ref.reason,
+        weapons_at_scene = _ref.weapons_at_scene,
+        shots_fired = _ref.shots_fired;
+
+    var experts = [];
+    var cache = {};
+    (0, _getData.getCSVData)(handleData, done);
+
+    function handleData(obj) {
+        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && obj.reason === reason && obj.weapon === weapons_at_scene && obj.shots === shots_fired;
+        if (filtered) {
+            if (!cache[obj.id]) {
+                cache[obj.id] = experts.length;
+                return experts.push({
+                    id: obj.id,
+                    count: 1,
+                    first_name: obj.first_name,
+                    last_name: obj.last_name
+                });
+            }
+            var pos = cache[obj.id];
+            experts[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort(function (a, b) {
+            return b.count - a.count;
+        });
+        return callback(experts);
+    }
+}
+
+function StrategyExpert(_ref2, callback) {
+    var strategy = _ref2.strategy;
+
+    var experts = [];
+    var cache = {};
+    (0, _getData.getCSVData)(handleData, done);
+
+    function handleData(obj) {
+        var filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && (obj[strategy] === 'Very Effective' || obj[strategy] === 'Somewhat Effective');
+        if (filtered) {
+            if (!cache[obj.id]) {
+                cache[obj.id] = experts.length;
+                return experts.push({
+                    id: obj.id,
+                    count: 1,
+                    first_name: obj.first_name,
+                    last_name: obj.last_name
+                });
+            }
+            var pos = cache[obj.id];
+            experts[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort(function (a, b) {
+            return b.count - a.count;
+        });
+        return callback(experts);
+    }
+}
+
+function StrategyRecommendation(_ref3, callback) {
+    var reason = _ref3.reason,
+        weapons_at_scene = _ref3.weapons_at_scene,
+        shots_fired = _ref3.shots_fired,
+        num_persons = _ref3.num_persons,
+        num_groups = _ref3.num_groups;
+
+    var cache = {};
+    var recommendations = [];
+    var strategies = ['buy_time', 'change_location', 'constructive_shadowing', 'cv_participants', 'de_escalating', 'family_friends', 'focus_on_consequences', 'information_gathering', 'keep_credibility', 'middle_man', 'other', 'other_cv_staff', 'reaching_agreement', 'reasoning', 'change_location'];
+
+    (0, _getData.getCSVData)(handleData, done);
+
+    // Don't need this function, it should count instead
+    function checkStrategies(obj) {
+        var check = [];
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = strategies[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var strategy = _step.value;
+
+                if (obj[strategy] === 'Very Effective' || obj[strategy] === 'Somewhat Effective') {
+                    check.push(true);
+                } else {
+                    check.push(false);
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        if (check.includes(true)) {
+            return true;
+        }
+        return false;
+    }
+
+    function handleData(obj) {
+        var filtered = obj.name === 'Chicago' && obj.reason === reason && obj.weapon === weapons_at_scene && obj.shots === shots_fired && (
+        //checkNumPersons(obj, num_persons) &&
+        //checkNumGroups(obj, num_groups) &&
+        obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily')
+        //checkStrategies(obj) // 'Very Effective' or 'Somewhat Effective'
+        ;
+        if (filtered) {
+            console.log(obj);
+            if (!cache[obj.strategy]) {
+                cache[obj.strategy] = recommendations.length;
+                return recommendations.push({
+                    strategy: obj.strategy,
+                    count: 1
+                });
+            }
+            var pos = cache[obj.strategy];
+            recommendations[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        recommendations.sort(function (a, b) {
+            return b.count - a.count;
+        });
+        return callback(recommendations);
+    }
+}
+
+exports.ConflictExpert = ConflictExpert;
+exports.StrategyExpert = StrategyExpert;
+exports.StrategyRecommendation = StrategyRecommendation;
 
 /***/ }),
 /* 43 */
@@ -7708,10 +7694,10 @@ module.exports = __webpack_require__(44);
 /***/ (function(module, exports, __webpack_require__) {
 
 //deprecated but leave it for backword compatibility
-module.exports.core=__webpack_require__(25);
+module.exports.core=__webpack_require__(23);
 
 //live apis
-module.exports=__webpack_require__(25);
+module.exports=__webpack_require__(23);
 module.exports.interfaces = __webpack_require__(124);
 
 
@@ -7983,7 +7969,7 @@ if (typeof Object.create === 'function') {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(8).Buffer;
 /*</replacement>*/
 
 function copyBuffer(src, target, offset) {
@@ -8302,7 +8288,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
 /* 53 */
@@ -8376,7 +8362,7 @@ function config (name) {
   return String(val).toLowerCase() === 'true';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 54 */
@@ -8412,11 +8398,11 @@ function config (name) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(32);
+var Transform = __webpack_require__(30);
 
 /*<replacement>*/
-var util = __webpack_require__(8);
-util.inherits = __webpack_require__(5);
+var util = __webpack_require__(6);
+util.inherits = __webpack_require__(3);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -8435,28 +8421,28 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 /* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(17);
+module.exports = __webpack_require__(15);
 
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(4);
 
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7).Transform
+module.exports = __webpack_require__(5).Transform
 
 
 /***/ }),
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7).PassThrough
+module.exports = __webpack_require__(5).PassThrough
 
 
 /***/ }),
@@ -8489,7 +8475,7 @@ stripBom.stream = function () {
 	});
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
 /* 60 */
@@ -8579,8 +8565,8 @@ exports = module.exports = function(bytes)
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
-var util = __webpack_require__(15);
-var Transform = __webpack_require__(27).Transform;
+var util = __webpack_require__(13);
+var Transform = __webpack_require__(25).Transform;
 
 function ctor(options, transform) {
 	util.inherits(FirstChunk, Transform);
@@ -8672,7 +8658,7 @@ module.exports = function () {
 
 module.exports.ctor = ctor;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
 /* 62 */
@@ -8742,13 +8728,13 @@ function getEnv(key, def) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getEol = __webpack_require__(34);
+var getEol = __webpack_require__(32);
 /**
  * convert data chunk to file lines array
  * @param  {string} data  data chunk as utf8 string
@@ -8788,8 +8774,8 @@ module.exports = function(fileLine, params) {
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getEol = __webpack_require__(34);
-var rowSplit = __webpack_require__(35);
+var getEol = __webpack_require__(32);
+var rowSplit = __webpack_require__(33);
 /**
  * Convert lines to csv columns
  * @param  {[type]} lines [file lines]
@@ -8846,7 +8832,7 @@ function getDelimiter(rowStr,param) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var parserMgr = __webpack_require__(68);
-var CSVError = __webpack_require__(18);
+var CSVError = __webpack_require__(16);
 var numReg = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
 /**
  * Convert lines of csv array into json
@@ -9490,7 +9476,7 @@ module.exports = set;
 var assignValue = __webpack_require__(78),
     castPath = __webpack_require__(90),
     isIndex = __webpack_require__(119),
-    isObject = __webpack_require__(22),
+    isObject = __webpack_require__(20),
     toKey = __webpack_require__(120);
 
 /**
@@ -9541,7 +9527,7 @@ module.exports = baseSet;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseAssignValue = __webpack_require__(79),
-    eq = __webpack_require__(38);
+    eq = __webpack_require__(36);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -9605,7 +9591,7 @@ module.exports = baseAssignValue;
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(19);
+var getNative = __webpack_require__(17);
 
 var defineProperty = (function() {
   try {
@@ -9624,7 +9610,7 @@ module.exports = defineProperty;
 
 var isFunction = __webpack_require__(82),
     isMasked = __webpack_require__(86),
-    isObject = __webpack_require__(22),
+    isObject = __webpack_require__(20),
     toSource = __webpack_require__(88);
 
 /**
@@ -9675,8 +9661,8 @@ module.exports = baseIsNative;
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(37),
-    isObject = __webpack_require__(22);
+var baseGetTag = __webpack_require__(35),
+    isObject = __webpack_require__(20);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -9723,13 +9709,13 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(20);
+var Symbol = __webpack_require__(18);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -9835,7 +9821,7 @@ module.exports = isMasked;
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(21);
+var root = __webpack_require__(19);
 
 /** Used to detect overreaching core-js shims. */
 var coreJsData = root['__core-js_shared__'];
@@ -9898,7 +9884,7 @@ module.exports = getValue;
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArray = __webpack_require__(23),
+var isArray = __webpack_require__(21),
     isKey = __webpack_require__(91),
     stringToPath = __webpack_require__(93),
     toString = __webpack_require__(116);
@@ -9925,8 +9911,8 @@ module.exports = castPath;
 /* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArray = __webpack_require__(23),
-    isSymbol = __webpack_require__(24);
+var isArray = __webpack_require__(21),
+    isSymbol = __webpack_require__(22);
 
 /** Used to match property names within property paths. */
 var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
@@ -10243,7 +10229,7 @@ module.exports = Hash;
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(11);
+var nativeCreate = __webpack_require__(9);
 
 /**
  * Removes all key-value entries from the hash.
@@ -10287,7 +10273,7 @@ module.exports = hashDelete;
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(11);
+var nativeCreate = __webpack_require__(9);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -10323,7 +10309,7 @@ module.exports = hashGet;
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(11);
+var nativeCreate = __webpack_require__(9);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -10352,7 +10338,7 @@ module.exports = hashHas;
 /* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(11);
+var nativeCreate = __webpack_require__(9);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -10438,7 +10424,7 @@ module.exports = listCacheClear;
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(12);
+var assocIndexOf = __webpack_require__(10);
 
 /** Used for built-in method references. */
 var arrayProto = Array.prototype;
@@ -10479,7 +10465,7 @@ module.exports = listCacheDelete;
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(12);
+var assocIndexOf = __webpack_require__(10);
 
 /**
  * Gets the list cache value for `key`.
@@ -10504,7 +10490,7 @@ module.exports = listCacheGet;
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(12);
+var assocIndexOf = __webpack_require__(10);
 
 /**
  * Checks if a list cache value for `key` exists.
@@ -10526,7 +10512,7 @@ module.exports = listCacheHas;
 /* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(12);
+var assocIndexOf = __webpack_require__(10);
 
 /**
  * Sets the list cache `key` to `value`.
@@ -10558,8 +10544,8 @@ module.exports = listCacheSet;
 /* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(19),
-    root = __webpack_require__(21);
+var getNative = __webpack_require__(17),
+    root = __webpack_require__(19);
 
 /* Built-in method references that are verified to be native. */
 var Map = getNative(root, 'Map');
@@ -10571,7 +10557,7 @@ module.exports = Map;
 /* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(13);
+var getMapData = __webpack_require__(11);
 
 /**
  * Removes `key` and its value from the map.
@@ -10616,7 +10602,7 @@ module.exports = isKeyable;
 /* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(13);
+var getMapData = __webpack_require__(11);
 
 /**
  * Gets the map value for `key`.
@@ -10638,7 +10624,7 @@ module.exports = mapCacheGet;
 /* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(13);
+var getMapData = __webpack_require__(11);
 
 /**
  * Checks if a map value for `key` exists.
@@ -10660,7 +10646,7 @@ module.exports = mapCacheHas;
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(13);
+var getMapData = __webpack_require__(11);
 
 /**
  * Sets the map `key` to `value`.
@@ -10722,10 +10708,10 @@ module.exports = toString;
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(20),
+var Symbol = __webpack_require__(18),
     arrayMap = __webpack_require__(118),
-    isArray = __webpack_require__(23),
-    isSymbol = __webpack_require__(24);
+    isArray = __webpack_require__(21),
+    isSymbol = __webpack_require__(22);
 
 /** Used as references for various `Number` constants. */
 var INFINITY = 1 / 0;
@@ -10820,7 +10806,7 @@ module.exports = isIndex;
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isSymbol = __webpack_require__(24);
+var isSymbol = __webpack_require__(22);
 
 /** Used as references for various `Number` constants. */
 var INFINITY = 1 / 0;
@@ -27933,7 +27919,7 @@ module.exports = toKey;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(39)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(37)(module)))
 
 /***/ }),
 /* 122 */
@@ -27943,9 +27929,9 @@ module.exports = toKey;
 var eom = "\x03";
 var eom1 = "\x0e";
 var eom2 = "\x0f";
-var CSVError = __webpack_require__(18);
+var CSVError = __webpack_require__(16);
 function workerMgr() {
-  var spawn = __webpack_require__(40).spawn;
+  var spawn = __webpack_require__(38).spawn;
   var exports = {
     initWorker: initWorker,
     sendWorker: sendWorker,
@@ -28009,7 +27995,7 @@ function workerMgr() {
 }
 
 function Worker(params) {
-  var spawn = __webpack_require__(40).spawn;
+  var spawn = __webpack_require__(38).spawn;
   this.cp = spawn(process.execPath, [__dirname + "/worker.js"], {
     env: {
       child:true
@@ -28091,7 +28077,7 @@ Worker.prototype.sendMsg = function(msg) {
   // this.cp.send(msg)
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), "/"))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), "/"))
 
 /***/ }),
 /* 123 */
@@ -28117,7 +28103,7 @@ module.exports = __webpack_require__(126);
 /***/ (function(module, exports, __webpack_require__) {
 
 var http = __webpack_require__(127);
-var Converter = __webpack_require__(14);
+var Converter = __webpack_require__(12);
 function startWebServer (args) {
     args = args || {};
     var serverArgs = {
@@ -28146,7 +28132,7 @@ module.exports.startWebServer = startWebServer;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(128)
-var IncomingMessage = __webpack_require__(42)
+var IncomingMessage = __webpack_require__(40)
 var extend = __webpack_require__(130)
 var statusCodes = __webpack_require__(131)
 var url = __webpack_require__(132)
@@ -28228,16 +28214,16 @@ http.METHODS = [
 	'UNLOCK',
 	'UNSUBSCRIBE'
 ]
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(41)
-var inherits = __webpack_require__(5)
-var response = __webpack_require__(42)
-var stream = __webpack_require__(7)
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(39)
+var inherits = __webpack_require__(3)
+var response = __webpack_require__(40)
+var stream = __webpack_require__(5)
 var toArrayBuffer = __webpack_require__(129)
 
 var IncomingMessage = response.IncomingMessage
@@ -28558,13 +28544,13 @@ var unsafeHeaders = [
 	'via'
 ]
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4).Buffer, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
 /* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(4).Buffer
+var Buffer = __webpack_require__(2).Buffer
 
 module.exports = function (buf) {
 	// If the buffer is backed by a Uint8Array, a faster version will work
@@ -29964,7 +29950,7 @@ Url.prototype.parseHost = function() {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)(module), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module), __webpack_require__(0)))
 
 /***/ }),
 /* 134 */
@@ -30198,7 +30184,7 @@ module.exports = __webpack_require__(139);
  */
 
 //implementation
-var Converter = __webpack_require__(14);
+var Converter = __webpack_require__(12);
 function _initConverter(){
     var csvConverter = new Converter();
     var started = false;
@@ -30235,7 +30221,90 @@ function convertString(csvString){
 //module interfaces
 module.exports.convertFile = convertFile;
 module.exports.convertString = convertString;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getCSVData = exports.getAPIData = undefined;
+
+var _csvtojson = __webpack_require__(43);
+
+var _csvtojson2 = _interopRequireDefault(_csvtojson);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var apiURL = 'https://cureviolence.civicore.com/?api=';
+var apiOpts = '&version=2.0&json=true';
+
+var apiCalls = {
+    getAllUsers: {
+        key: '9a878b36eb9131c2bae9cb682597ed2d.3.9c2c11d4a3f5fd195655c79cb5352e1e.1588186446', function: 'getAll',
+        tableName: 'users',
+        pageSize: 200,
+        fieldList: ['userID', 'email', 'firstName', 'lastName', 'regions_sites_id', 'securityProfile_id'],
+        whereField: 'positionImport',
+        whereFieldValue: 'OW'
+    },
+    getAllLastMediations: {
+        key: '9a878b36eb9131c2bae9cb682597ed2d.3.9c2c11d4a3f5fd195655c79cb5352e1e.1588186446', function: 'getAll',
+        tableName: 'conMediation',
+        pageSize: 200,
+        fieldList: ['id', 'created', 'updated', 'a2address', 'b14OutcomeOfMediation', 'b4primaryReasonForConflict', 'b6fWeaponIsThoughtToBe', 'b9aShotsFired', 'calc_primaryMediator', 'strat_buyTime', 'strat_changeLocation', 'strat_constructiveShadowing', 'strat_deescalatingTheSituation', 'strat_focusOnConsequences', 'strat_informationGathering', 'strat_createdOpportunityToKeepCredibility', 'strat_middleMan', 'strat_reachingAgreementSettlingConflict', 'strat_reasoningProvidingNonviolentAlternativeSolutions', 'strat_usingCVStaffFromOtherSites', 'strat_usingFamilyOrFriendsOfPartiesInvolved', 'strat_usingOtherCVParticipants', 'users_id']
+    }
+};
+
+function getAPIData(_ref, callback) {
+    var type = _ref.type;
+
+    fetch(apiURL + JSON.stringify(apiCalls[type]) + apiOpts, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*'
+        }
+    }).then(function (res) {
+        return res.text();
+    }).then(function (data) {
+        console.log(data);
+        callback(data);
+    });
+}
+
+var csvInTextForm = '';
+
+function loadCSV(callback) {
+    // If csv already loaded
+    if (csvInTextForm) return callback(csvInTextForm);
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType('application/css');
+    xobj.open('GET', './mediations.csv', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState === 4 && xobj.status === 200) {
+            csvInTextForm = xobj.responseText;
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
+}
+
+function getCSVData(callback, done) {
+    return loadCSV(function (csvAsText) {
+        (0, _csvtojson2.default)().fromString(csvAsText).on('json', callback).on('done', done);
+    });
+}
+
+exports.getAPIData = getAPIData;
+exports.getCSVData = getCSVData;
 
 /***/ })
 /******/ ]);

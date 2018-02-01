@@ -7,6 +7,10 @@ html, body {
     padding: 0;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     min-height: 100vh;
     display: flex;
@@ -114,7 +118,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 0.6rem 0;
+    margin: 1rem 0;
 }
 
 .option_label {
@@ -149,7 +153,13 @@ body {
     flex: 3;
     padding: 1rem;
     overflow-y: auto;
+    display: flex;
 }
+
+.card_right > div {
+    margin-right: 1rem;
+}
+
 @media(max-width:600px) {
     .card_right {
         flex: 1;
@@ -157,6 +167,7 @@ body {
 }
 
 .data-container {
+    overflow: auto;
     width: fit-content;
     background: white;
     padding: 0.001rem;
@@ -182,13 +193,13 @@ body {
     background: url('./loading.gif') center center/400%;
 }
 
-#data {
+#data, #data-live {
     margin:0;
     padding: 0;
     list-style-type: none;
 }
 
-#data > li {
+#data > li, #data-live > li {
     counter-increment: customlistcounter;
     width: 200px;
     margin: 1rem;
@@ -198,7 +209,7 @@ body {
     border-bottom: 2px solid #00C6FF;
 }
 
-#data > li:before {
+#data > li::before, #data-live > li::before{
     content: counter(customlistcounter) " ";
     float: left;
     margin-right: 1rem;
@@ -208,12 +219,12 @@ body {
     width: 1rem;
 }
 
-#data li:first-child {
+#data li:first-child, #data-live > li:first-child {
     counter-reset: customlistcounter;
     margin-top: 1.4rem;
 }
 
-#data li:last-child {
+#data li:last-child, #data-live > li:last-child {
     margin-bottom: 1.4rem;
 }
 

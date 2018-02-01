@@ -1,30 +1,13 @@
-import csv from 'csvtojson'
+import { getAPIData, getCSVData } from './getData.js'
 
-function loadCSV(callback) {
-    let xobj = new XMLHttpRequest()
-    xobj.overrideMimeType('application/css')
-    xobj.open('GET', './mediations.csv', true)
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            callback(xobj.responseText)
-        }
-    }
-    xobj.send(null)
-}
-
-function getData(callback, done) {
-    return loadCSV( csvAsText => {
-        csv()
-            .fromString(csvAsText)
-            .on('json', callback)
-            .on('done', done)
-    })
-}
+getAPIData({ type: 'getAllUsers' }, data => {
+    console.log(data)
+})
 
 function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     const experts = []
     const cache = {}
-    getData(handleData, done)
+    getCSVData(handleData, done)
 
     function handleData(obj) {
         let filtered = (
@@ -34,12 +17,12 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
                 obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' ||
                 obj.outcome === 'Conflict resolved temporarily'
             ) &&
-            obj.reason  === reason &&
+            obj.reason === reason &&
             obj.weapon === weapons_at_scene &&
-            obj.shots  === shots_fired
+            obj.shots === shots_fired
         )
         if (filtered) {
-            if (!cache[obj.id]){
+            if (!cache[obj.id]) {
                 cache[obj.id] = experts.length
                 return experts.push({
                     id: obj.id,
@@ -65,7 +48,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
 function StrategyExpert({ strategy }, callback) {
     const experts = []
     const cache = {}
-    getData(handleData, done)
+    getCSVData(handleData, done)
 
     function handleData(obj) {
         let filtered = (
@@ -81,7 +64,7 @@ function StrategyExpert({ strategy }, callback) {
             )
         )
         if (filtered) {
-            if (!cache[obj.id]){
+            if (!cache[obj.id]) {
                 cache[obj.id] = experts.length
                 return experts.push({
                     id: obj.id,
@@ -104,8 +87,9 @@ function StrategyExpert({ strategy }, callback) {
     }
 }
 
-function MediationRecommendation({ reason, weapons_at_scene, shots_fired }, callback) {
+function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, callback) {
     const cache = {}
+    const recommendations = []
     const strategies = [
         'buy_time',
         'change_location',
@@ -124,8 +108,9 @@ function MediationRecommendation({ reason, weapons_at_scene, shots_fired }, call
         'change_location'
     ]
 
-    getData(handleData, done)
+    getCSVData(handleData, done)
 
+    // Don't need this function, it should count instead
     function checkStrategies(obj) {
         let check = []
         for (let strategy of strategies) {
@@ -139,115 +124,44 @@ function MediationRecommendation({ reason, weapons_at_scene, shots_fired }, call
             return true
         }
         return false
-    /*
-        return (
-            (
-                obj.buy_time === 'Very Effective' ||
-                obj.buy_time === 'Somewhat Effective'
-            ) ||
-            (
-                obj.change_location === 'Very Effective' ||
-                obj.change_location === 'Somewhat Effective'
-            ) ||
-            (
-                obj.constructive_shadowing === 'Very Effective' ||
-                obj.constructive_shadowing === 'Somewhat Effective'
-            ) ||
-            (
-                obj.cv_participants === 'Very Effective' ||
-                obj.cv_participants === 'Somewhat Effective'
-            ) ||
-            (
-                obj.de_escalating === 'Very Effective' ||
-                obj.de_escalating === 'Somewhat Effective'
-            ) ||
-            (
-                obj.family_friends === 'Very Effective' ||
-                obj.family_friends === 'Somewhat Effective'
-            ) ||
-            (
-                obj.focus_on_consequences === 'Very Effective' ||
-                obj.focus_on_consequences === 'Somewhat Effective'
-            ) ||
-            (
-                obj.information_gathering === 'Very Effective' ||
-                obj.information_gathering === 'Somewhat Effective'
-            ) ||
-            (
-                obj.keep_credibility === 'Very Effective' ||
-                obj.keep_credibility=== 'Somewhat Effective'
-            ) ||
-            (
-                obj.middle_man === 'Very Effective' ||
-                obj.middle_man === 'Somewhat Effective'
-            ) ||
-            (
-                obj.other === 'Very Effective' ||
-                obj.other === 'Somewhat Effective'
-            ) ||
-            (
-                obj.other_cv_staff === 'Very Effective' ||
-                obj.other_cv_staff === 'Somewhat Effective'
-            ) ||
-            (
-                obj.reaching_agreement === 'Very Effective' ||
-                obj.reaching_agreement === 'Somewhat Effective'
-            ) ||
-            (
-                obj.reasoning === 'Very Effective' ||
-                obj.reasoning === 'Somewhat Effective'
-            ) ||
-            (
-                obj.change_location === 'Very Effective' ||
-                obj.change_location === 'Somewhat Effective'
-            )
-        )
-        */
     }
 
     function handleData(obj) {
         let filtered = (
             obj.name === 'Chicago' &&
+            obj.reason === reason &&
+            obj.weapon === weapons_at_scene &&
+            obj.shots === shots_fired &&
+            //checkNumPersons(obj, num_persons) &&
+            //checkNumGroups(obj, num_groups) &&
             (
                 obj.outcome === 'Conflict resolved' ||
                 obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' ||
                 obj.outcome === 'Conflict resolved temporarily'
-            ) &&
-            (
-                checkStrategies(obj) // if equals 'Very Effective' or 'Somewhat Effective'
-            ) &&
-            (
-                obj.reason = reason,
-                obj.weapon = weapons_at_scene,
-                obj.shots = shots_fired
             )
+            //checkStrategies(obj) // 'Very Effective' or 'Somewhat Effective'
         )
         if (filtered) {
-            console.log(obj.id)
-            /*
-            cache = {
-
-            }
-            if (!cache[obj.strategy]){
-                cache[obj.strategy] = experts.length
-                return mediations.push({
+            console.log(obj)
+            if (!cache[obj.strategy]) {
+                cache[obj.strategy] = recommendations.length
+                return recommendations.push({
                     strategy: obj.strategy,
                     count: 1
                 })
             }
             let pos = cache[obj.strategy]
-            mediations[pos].count++
-            */
+            recommendations[pos].count++
         }
     }
 
     function done(err) {
         if (err) return console.log(err)
-        mediations.sort((a, b) => {
+        recommendations.sort((a, b) => {
             return b.count - a.count
         })
-        return callback(mediations)
+        return callback(recommendations)
     }
 }
 
-export { ConflictExpert, StrategyExpert, MediationRecommendation }
+export { ConflictExpert, StrategyExpert, StrategyRecommendation }
