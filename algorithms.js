@@ -7,7 +7,12 @@ getAPIData({ type: 'getAllUsers' }, data => {
 function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     const experts = []
     const cache = {}
+<<<<<<< HEAD
     getCSVData(handleData, done)
+=======
+
+    getData(handleData, done)
+>>>>>>> 407d3fc02d9dbad4fe55db2e125f50590ef564d1
 
     function handleData(obj) {
         let filtered = (
@@ -21,8 +26,13 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
             obj.weapon === weapons_at_scene &&
             obj.shots === shots_fired
         )
+<<<<<<< HEAD
         if (filtered) {
             if (!cache[obj.id]) {
+=======
+        if (filtered) { //hello
+            if (!cache[obj.id]){
+>>>>>>> 407d3fc02d9dbad4fe55db2e125f50590ef564d1
                 cache[obj.id] = experts.length
                 return experts.push({
                     id: obj.id,
