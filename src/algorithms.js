@@ -61,8 +61,7 @@ function StrategyExpert({ strategy }, callback) {
                 obj.outcome === 'Conflict resolved temporarily'
             ) &&
             (
-                obj[strategy] === 'Very Effective' ||
-                obj[strategy] === 'Somewhat Effective'
+                obj[strategy] === 'Very Effective'
             )
         )
         if (filtered) {
