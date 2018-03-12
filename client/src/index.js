@@ -1,5 +1,4 @@
-import { ConflictExpert, StrategyExpert, StrategyRecommendation } from './algorithms.js'
-import { isLive, refresh } from './auth'
+import { ConflictExpert, StrategyExpert, StrategyRecommendation } from './algorithms/algorithms'
 
 let submit = document.querySelector('input[type="submit"]')
 submit.addEventListener('click', runAlgorithm)
@@ -9,8 +8,12 @@ let algorithmOption = document.querySelector('select[name="algorithm"]')
 algorithmOption.addEventListener('change', showInputs)
 showInputs({srcElement:{value: 'Conflict Expert'}})
 
-let loadingDisplay = document.querySelector('.loading-display')
-let dataDisplay = document.querySelector('#data')
+let csvLoading = document.querySelector('#loading-csv')
+let apiSnapLoading = document.querySelector('#loading-api-snap')
+let apiLiveLoading = document.querySelector('#loading-api-live')
+let csvDisplay = document.querySelector('#data-csv')
+let apiSnapDisplay = document.querySelector('#data-api-snap')
+let apiLiveDisplay = document.querySelector('#data-api-live')
 
 function searchNodeListByName(nodelist, name) {
     for (let i of nodelist) {
@@ -57,7 +60,10 @@ function getAlgorithmInputs() {
 }
 
 function runAlgorithm() {
-    loadingDisplay.classList.add('loading')
+    csvLoading.classList.add('loading')
+    apiSnapLoading.classList.add('loading')
+    apiLiveLoading.classList.add('loading')
+
     let inputs = getAlgorithmInputs()
 
     switch (inputs.algorithm) {
@@ -66,14 +72,22 @@ function runAlgorithm() {
                 reason: inputs.reason,
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired
-            }, data => {
-                dataDisplay.innerHTML = ''
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
+            }, csvData => {
+                csvDisplay.innerHTML = ''
+                for (let i of csvData) {
+                    csvDisplay.innerHTML += `
                         <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
                     `
                 }
-                loadingDisplay.classList.remove('loading')
+                csvLoading.classList.remove('loading')
+            }, apiSnapData => {
+                apiSnapDisplay.innerHTML = ''
+                for (let i of apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li>${i.full_name }<span class="data-count">${i.count}</span></li>
+                    `
+                }
+                apiSnapLoading.classList.remove('loading')
             })
             break
         case 'Strategy Expert':
@@ -95,15 +109,21 @@ function runAlgorithm() {
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired,
                 num_persons: inputs.num_persons,
-                num_groups: inputs.num_groups
-            }, data => {
-                dataDisplay.innerHTML = ''
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
-                        <li>${i.strategy} <span class="data-count">${i.count}</span></li>
+                num_groups: inputs.num_groups,
+                no_num_persons: false,
+                no_num_groups: false
+            }, csvData => {
+                
+            }, apiSnapData => {
+                apiSnapDisplay.innerHTML = ''
+                for (let i in apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li><span class="overflow">${i}</span><span class="data-count">${Math.round((apiSnapData[i].true/(apiSnapData[i].true+apiSnapData[i].false))*100) + '%'}</span></li>
                     `
                 }
-                loadingDisplay.classList.remove('loading')
+                apiSnapLoading.classList.remove('loading')
+            }, apiLiveData => {
+
             })
             break
         default:

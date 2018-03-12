@@ -59,6 +59,7 @@ body {
 }
 
 .card_dashboard {
+    position: relative;
     display: flex;
     flex:1;
     align-self: stretch;
@@ -98,19 +99,15 @@ body {
     height: 40px;
     margin-right: 1rem;
     border-radius: 50%;
-    background: #F03A47;
-    position: relative;
     /*align-self: center;*/
 }
 
 .option_icon img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 75%;
-    height: 75%;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: auto;
 }
 
 .option {
@@ -125,7 +122,7 @@ body {
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: #666666;
+    color: #323232;
 }
 
 .option_select {
@@ -138,6 +135,7 @@ body {
     background: white;
     width: 100%;
     cursor: pointer;
+    color: #525252;
 }
 
 .option_select--red {
@@ -177,7 +175,7 @@ body {
 }
 
 .data-header {
-    color: #666666;
+    color: #323232;
     font-size: 0.8rem;
     margin: 0 0 0.6rem 0;
     text-transform: uppercase;
@@ -193,13 +191,13 @@ body {
     background: url('../img/loading.gif') center center/400%;
 }
 
-#data, #data-live {
+.data-container ol {
     margin:0;
     padding: 0;
     list-style-type: none;
 }
 
-#data > li, #data-live > li {
+.data-container ol > li {
     counter-increment: customlistcounter;
     width: 200px;
     margin: 1rem;
@@ -209,7 +207,7 @@ body {
     border-bottom: 2px solid #00C6FF;
 }
 
-#data > li::before, #data-live > li::before{
+.data-container ol > li::before {
     content: counter(customlistcounter) " ";
     float: left;
     margin-right: 1rem;
@@ -219,12 +217,12 @@ body {
     width: 1rem;
 }
 
-#data li:first-child, #data-live > li:first-child {
+.data-container ol li:first-child {
     counter-reset: customlistcounter;
     margin-top: 1.4rem;
 }
 
-#data li:last-child, #data-live > li:last-child {
+.data-container ol li:last-child {
     margin-bottom: 1.4rem;
 }
 
@@ -232,4 +230,11 @@ body {
     float: right;
     color: #666666;
     font-weight: normal;
+}
+
+.overflow {
+    display: inline-block;
+    width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

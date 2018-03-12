@@ -1394,8 +1394,8 @@ module.exports = function (key) {
 
 
 
-var base64 = __webpack_require__(373)
-var ieee754 = __webpack_require__(374)
+var base64 = __webpack_require__(374)
+var ieee754 = __webpack_require__(375)
 var isArray = __webpack_require__(148)
 
 exports.Buffer = Buffer
@@ -3651,7 +3651,7 @@ exports.Readable = exports;
 exports.Writable = __webpack_require__(105);
 exports.Duplex = __webpack_require__(46);
 exports.Transform = __webpack_require__(154);
-exports.PassThrough = __webpack_require__(383);
+exports.PassThrough = __webpack_require__(384);
 
 
 /***/ }),
@@ -4298,7 +4298,7 @@ module.exports = assocIndexOf;
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isKeyable = __webpack_require__(441);
+var isKeyable = __webpack_require__(442);
 
 /**
  * Gets the data for `map`.
@@ -5234,16 +5234,16 @@ module.exports = navigator && navigator.userAgent || '';
 /* WEBPACK VAR INJECTION */(function(process, Buffer) {var util = __webpack_require__(103);
 var Transform = __webpack_require__(149).Transform;
 var os = __webpack_require__(155);
-var stripBom = __webpack_require__(388);
+var stripBom = __webpack_require__(389);
 var eol = os.EOL;
 // var Processor = require("./Processor.js");
-var defParam = __webpack_require__(391);
-var fileline = __webpack_require__(392);
-var fileLineToCSVLine = __webpack_require__(393);
-var linesToJson = __webpack_require__(396);
+var defParam = __webpack_require__(392);
+var fileline = __webpack_require__(393);
+var fileLineToCSVLine = __webpack_require__(394);
+var linesToJson = __webpack_require__(397);
 var CSVError = __webpack_require__(106);
 var workerMgr = null;
-var _ = __webpack_require__(450);
+var _ = __webpack_require__(451);
 var rowSplit = __webpack_require__(157);
 function Converter(params, options) {
   Transform.call(this, options);
@@ -5445,7 +5445,7 @@ Converter.prototype._preProcessLines = function (lines, startIdx) {
 Converter.prototype.initWorker = function () {
   var workerNum = this.param.workerNum - 1;
   if (workerNum > 0) {
-    workerMgr = __webpack_require__(451);
+    workerMgr = __webpack_require__(452);
     this.workerMgr = workerMgr();
     this.workerMgr.initWorker(workerNum, this.param);
   }
@@ -5727,7 +5727,7 @@ Converter.prototype.getEol = function (data) {
 };
 
 Converter.prototype.fromFile = function (filePath, cb, options) {
-  var fs = __webpack_require__(452);
+  var fs = __webpack_require__(453);
   var rs = null;
   if (typeof cb ==="object" && typeof options === "undefined"){
     options=cb;
@@ -6331,7 +6331,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(375);
+exports.isBuffer = __webpack_require__(376);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -6375,7 +6375,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(376);
+exports.inherits = __webpack_require__(377);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -6780,7 +6780,7 @@ util.inherits = __webpack_require__(34);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(382)
+  deprecate: __webpack_require__(383)
 };
 /*</replacement>*/
 
@@ -7385,7 +7385,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(380).setImmediate, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(381).setImmediate, __webpack_require__(10)))
 
 /***/ }),
 /* 106 */
@@ -7424,8 +7424,8 @@ CSVError.fromArray = function(arr) {
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(410),
-    getValue = __webpack_require__(418);
+var baseIsNative = __webpack_require__(411),
+    getValue = __webpack_require__(419);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -7459,7 +7459,7 @@ module.exports = Symbol;
 /* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(412);
+var freeGlobal = __webpack_require__(413);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -7544,7 +7544,7 @@ module.exports = isArray;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(159),
-    isObjectLike = __webpack_require__(421);
+    isObjectLike = __webpack_require__(422);
 
 /** `Object#toString` result references. */
 var symbolTag = '[object Symbol]';
@@ -8564,10 +8564,10 @@ var inherits = __webpack_require__(34);
 
 inherits(Stream, EE);
 Stream.Readable = __webpack_require__(54);
-Stream.Writable = __webpack_require__(384);
-Stream.Duplex = __webpack_require__(385);
-Stream.Transform = __webpack_require__(386);
-Stream.PassThrough = __webpack_require__(387);
+Stream.Writable = __webpack_require__(385);
+Stream.Duplex = __webpack_require__(386);
+Stream.Transform = __webpack_require__(387);
+Stream.PassThrough = __webpack_require__(388);
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -8741,7 +8741,7 @@ util.inherits = __webpack_require__(34);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(377);
+var debugUtil = __webpack_require__(378);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -8750,7 +8750,7 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(378);
+var BufferList = __webpack_require__(379);
 var destroyImpl = __webpack_require__(152);
 var StringDecoder;
 
@@ -10357,7 +10357,7 @@ module.exports = function(data, param) {
 /* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getDelimiter = __webpack_require__(395);
+var getDelimiter = __webpack_require__(396);
 var filterRow=__webpack_require__(158);
 /**
  * Convert a line of string to csv columns according to its delimiter
@@ -10519,8 +10519,8 @@ module.exports=function filterRow(row, param) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(108),
-    getRawTag = __webpack_require__(413),
-    objectToString = __webpack_require__(414);
+    getRawTag = __webpack_require__(414),
+    objectToString = __webpack_require__(415);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -16249,9 +16249,7 @@ module.exports = function (regExp, replace) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithms_js__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth__ = __webpack_require__(469);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithms_algorithms__ = __webpack_require__(369);
 
 
 let submit = document.querySelector('input[type="submit"]');
@@ -16262,8 +16260,12 @@ let algorithmOption = document.querySelector('select[name="algorithm"]');
 algorithmOption.addEventListener('change', showInputs);
 showInputs({ srcElement: { value: 'Conflict Expert' } });
 
-let loadingDisplay = document.querySelector('.loading-display');
-let dataDisplay = document.querySelector('#data');
+let csvLoading = document.querySelector('#loading-csv');
+let apiSnapLoading = document.querySelector('#loading-api-snap');
+let apiLiveLoading = document.querySelector('#loading-api-live');
+let csvDisplay = document.querySelector('#data-csv');
+let apiSnapDisplay = document.querySelector('#data-api-snap');
+let apiLiveDisplay = document.querySelector('#data-api-live');
 
 function searchNodeListByName(nodelist, name) {
     for (let i of nodelist) {
@@ -16310,27 +16312,38 @@ function getAlgorithmInputs() {
 }
 
 function runAlgorithm() {
-    loadingDisplay.classList.add('loading');
+    csvLoading.classList.add('loading');
+    apiSnapLoading.classList.add('loading');
+    apiLiveLoading.classList.add('loading');
+
     let inputs = getAlgorithmInputs();
 
     switch (inputs.algorithm) {
         case 'Conflict Expert':
-            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_js__["a" /* ConflictExpert */])({
+            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_algorithms__["a" /* ConflictExpert */])({
                 reason: inputs.reason,
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired
-            }, data => {
-                dataDisplay.innerHTML = '';
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
+            }, csvData => {
+                csvDisplay.innerHTML = '';
+                for (let i of csvData) {
+                    csvDisplay.innerHTML += `
                         <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
                     `;
                 }
-                loadingDisplay.classList.remove('loading');
+                csvLoading.classList.remove('loading');
+            }, apiSnapData => {
+                apiSnapDisplay.innerHTML = '';
+                for (let i of apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li>${i.full_name}<span class="data-count">${i.count}</span></li>
+                    `;
+                }
+                apiSnapLoading.classList.remove('loading');
             });
             break;
         case 'Strategy Expert':
-            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_js__["b" /* StrategyExpert */])({
+            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_algorithms__["b" /* StrategyExpert */])({
                 strategy: inputs.strategy
             }, data => {
                 dataDisplay.innerHTML = '';
@@ -16343,21 +16356,23 @@ function runAlgorithm() {
             });
             break;
         case 'Strategy Recommendation':
-            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_js__["c" /* StrategyRecommendation */])({
+            Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_algorithms__["c" /* StrategyRecommendation */])({
                 reason: inputs.reason,
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired,
                 num_persons: inputs.num_persons,
-                num_groups: inputs.num_groups
-            }, data => {
-                dataDisplay.innerHTML = '';
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
-                        <li>${i.strategy} <span class="data-count">${i.count}</span></li>
+                num_groups: inputs.num_groups,
+                no_num_persons: false,
+                no_num_groups: false
+            }, csvData => {}, apiSnapData => {
+                apiSnapDisplay.innerHTML = '';
+                for (let i in apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li><span class="overflow">${i}</span><span class="data-count">${Math.round(apiSnapData[i].true / (apiSnapData[i].true + apiSnapData[i].false) * 100) + '%'}</span></li>
                     `;
                 }
-                loadingDisplay.classList.remove('loading');
-            });
+                apiSnapLoading.classList.remove('loading');
+            }, apiLiveData => {});
             break;
         default:
             break;
@@ -16372,18 +16387,158 @@ function runAlgorithm() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyExpert; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return StrategyRecommendation; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__get_data_js__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__methods_api__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__methods_csv__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_json__ = __webpack_require__(470);
 
 
-Object(__WEBPACK_IMPORTED_MODULE_0__get_data_js__["a" /* getAPIData */])({ type: 'getAllUsers' }, data => {
-    console.log(data);
-});
 
-function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
+
+function ConflictExpert({ reason, weapons_at_scene, shots_fired }, csvCallback, apiSnapCallback) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__methods_csv__["a" /* ConflictExpert_csv */])({ reason, weapons_at_scene, shots_fired }, experts => {
+        return csvCallback(experts);
+    });
+    Object(__WEBPACK_IMPORTED_MODULE_2__methods_json__["a" /* ConflictExpert_json */])({ reason, weapons_at_scene, shots_fired }, experts => {
+        return apiSnapCallback(experts);
+    });
+    Object(__WEBPACK_IMPORTED_MODULE_0__methods_api__["a" /* ConflictExpert_api */])({ reason, weapons_at_scene, shots_fired }, experts => {
+        return apiCallback(experts);
+    });
+}
+
+function StrategyExpert({ strategy }, callback) {}
+
+function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, csvCallback, apiSnapCallback, apiCallback) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__methods_json__["b" /* StrategyRecommendation_json */])({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
+        apiSnapCallback(experts);
+    });
+}
+
+
+
+/***/ }),
+/* 370 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert_api; });
+/* unused harmony export StrategyExpert_api */
+/* unused harmony export StrategyRecommendation_api */
+/* unused harmony export All_api */
+const apiURL = 'http://localhost:8080';
+
+const apiCalls = {
+    ConflictExpert: {
+        url: 'https://api.civicore.com/cure/api/v3/data/conMediation',
+        query: {
+            key: '',
+            fields: ["users_id", "b6fWeaponIsThoughtToBe", "b4primaryReasonForConflict", "b9aShotsFired", "regions_id", "lastName", "firstName", "b14OutcomeOfMediation"],
+            where: {
+                "whereType": "AND",
+                "clauses": [{
+                    "whereType": "OR",
+                    "clauses": [{
+                        "fieldName": "b14OutcomeOfMediation",
+                        "operator": "=",
+                        "operand": "730"
+                    }, {
+                        "fieldName": "b14OutcomeOfMediation",
+                        "operator": "=",
+                        "operand": "1038"
+                    }, {
+                        "fieldName": "b14OutcomeOfMediation",
+                        "operator": "=",
+                        "operand": "731"
+                    }]
+                }, {
+                    "fieldName": "regions_id",
+                    "operator": "=",
+                    "operand": "1",
+                    "type": "id"
+                }, {
+                    "fieldName": "b4primaryReasonForConflict",
+                    "operator": "=",
+                    "operand": "710"
+                }, {
+                    "fieldName": "b6fWeaponIsThoughtToBe",
+                    "operator": "=",
+                    "operand": "426"
+                }, {
+                    "fieldName": "b9aShotsFired",
+                    "operator": "=",
+                    "operand": "427"
+                }]
+
+            }
+        }
+    }
+};
+
+function getAPIData(type, callback) {
+    fetch(apiURL, {
+        method: 'POST',
+        mode: 'cors',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }),
+        body: JSON.stringify(apiCalls[type])
+    }).then(res => {
+        return res.json();
+    }).then(data => {
+        callback(data);
+    });
+}
+
+function ConflictExpert_api() {}
+
+function StrategyExpert_api() {}
+
+function StrategyRecommendation_api() {}
+
+
+
+/***/ }),
+/* 371 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert_csv; });
+/* unused harmony export StrategyExpert_csv */
+/* unused harmony export StrategyRecommendation_csv */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_csvtojson__);
+
+
+let csvInTextForm = '';
+
+function loadCSV(callback) {
+    // If csv already loaded
+    if (csvInTextForm) return callback(csvInTextForm);
+
+    let xobj = new XMLHttpRequest();
+    xobj.overrideMimeType('application/css');
+    xobj.open('GET', 'data/mediations.csv', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState === 4 && xobj.status === 200) {
+            csvInTextForm = xobj.responseText;
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
+}
+
+function getCSVData(callback, done) {
+    return loadCSV(csvAsText => {
+        __WEBPACK_IMPORTED_MODULE_0_csvtojson___default()().fromString(csvAsText).on('json', callback).on('done', done);
+    });
+}
+
+function ConflictExpert_csv({ reason, weapons_at_scene, shots_fired }, callback) {
     const experts = [];
     const cache = {};
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__get_data_js__["b" /* getCSVData */])(handleData, done);
+    getCSVData(handleData, done);
 
     function handleData(obj) {
         let filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && obj.reason === reason && obj.weapon === weapons_at_scene && obj.shots === shots_fired;
@@ -16412,10 +16567,10 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     }
 }
 
-function StrategyExpert({ strategy }, callback) {
+function StrategyExpert_csv({ strategy }, callback) {
     const experts = [];
     const cache = {};
-    Object(__WEBPACK_IMPORTED_MODULE_0__get_data_js__["b" /* getCSVData */])(handleData, done);
+    getCSVData(handleData, done);
 
     function handleData(obj) {
         let filtered = obj.name === 'Chicago' && (obj.outcome === 'Conflict resolved' || obj.outcome === 'ConflictÂ resolvedÂ asÂ longÂ asÂ certainÂ conditionsÂ areÂ met' || obj.outcome === 'Conflict resolved temporarily') && (obj[strategy] === 'Very Effective' || obj[strategy] === 'Somewhat Effective');
@@ -16443,12 +16598,12 @@ function StrategyExpert({ strategy }, callback) {
     }
 }
 
-function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, callback) {
+function StrategyRecommendation_csv({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, callback) {
     const cache = {};
     const recommendations = [];
     const strategies = ['buy_time', 'change_location', 'constructive_shadowing', 'cv_participants', 'de_escalating', 'family_friends', 'focus_on_consequences', 'information_gathering', 'keep_credibility', 'middle_man', 'other', 'other_cv_staff', 'reaching_agreement', 'reasoning', 'change_location'];
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__get_data_js__["b" /* getCSVData */])(handleData, done);
+    getCSVData(handleData, done);
 
     // Don't need this function, it should count instead
     function checkStrategies(obj) {
@@ -16474,7 +16629,6 @@ function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_per
         //checkStrategies(obj) // 'Very Effective' or 'Somewhat Effective'
         ;
         if (filtered) {
-            console.log(obj);
             if (!cache[obj.strategy]) {
                 cache[obj.strategy] = recommendations.length;
                 return recommendations.push({
@@ -16499,84 +16653,13 @@ function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_per
 
 
 /***/ }),
-/* 370 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getAPIData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getCSVData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_csvtojson__);
-
-
-const apiURL = 'https://cureviolence.civicore.com/?api=';
-const apiOpts = '&version=2.0&json=';
-
-const apiCalls = {
-    getAllUsers: {
-        key: '58c97096a25244178ee8e20c9fe1ea51.5.9efe678bfe4b154d3fddc391b44ddf8b.1518627307', function: 'getAll',
-        tableName: 'users',
-        pageSize: 200,
-        fieldList: ['userID', 'email', 'firstName', 'lastName', 'regions_sites_id', 'securityProfile_id'],
-        whereField: 'positionImport',
-        whereFieldValue: 'OW'
-    },
-    getAllLastMediations: {
-        key: '58c97096a25244178ee8e20c9fe1ea51.5.9efe678bfe4b154d3fddc391b44ddf8b.1518627307', function: 'getAll',
-        tableName: 'conMediation',
-        pageSize: 200,
-        fieldList: ['id', 'created', 'updated', 'a2address', 'b14OutcomeOfMediation', 'b4primaryReasonForConflict', 'b6fWeaponIsThoughtToBe', 'b9aShotsFired', 'calc_primaryMediator', 'strat_buyTime', 'strat_changeLocation', 'strat_constructiveShadowing', 'strat_deescalatingTheSituation', 'strat_focusOnConsequences', 'strat_informationGathering', 'strat_createdOpportunityToKeepCredibility', 'strat_middleMan', 'strat_reachingAgreementSettlingConflict', 'strat_reasoningProvidingNonviolentAlternativeSolutions', 'strat_usingCVStaffFromOtherSites', 'strat_usingFamilyOrFriendsOfPartiesInvolved', 'strat_usingOtherCVParticipants', 'users_id']
-    }
-};
-
-function getAPIData({ type }, callback) {
-    fetch(apiURL + JSON.stringify(apiCalls[type]) + apiOpts, {
-        method: 'GET',
-        mode: 'cors',
-        headers: new Headers({
-            'content-type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json'
-        })
-    }).then(res => res.text()).then(data => {
-        console.log(data);
-        callback(data);
-    });
-}
-
-let csvInTextForm = '';
-
-function loadCSV(callback) {
-    // If csv already loaded
-    if (csvInTextForm) return callback(csvInTextForm);
-
-    let xobj = new XMLHttpRequest();
-    xobj.overrideMimeType('application/css');
-    xobj.open('GET', 'csv/mediations.csv', true);
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            csvInTextForm = xobj.responseText;
-            callback(xobj.responseText);
-        }
-    };
-    xobj.send(null);
-}
-
-function getCSVData(callback, done) {
-    return loadCSV(csvAsText => {
-        __WEBPACK_IMPORTED_MODULE_0_csvtojson___default()().fromString(csvAsText).on('json', callback).on('done', done);
-    });
-}
-
-
-
-/***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(372);
+module.exports = __webpack_require__(373);
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //deprecated but leave it for backword compatibility
@@ -16584,11 +16667,11 @@ module.exports.core=__webpack_require__(147);
 
 //live apis
 module.exports=__webpack_require__(147);
-module.exports.interfaces = __webpack_require__(453);
+module.exports.interfaces = __webpack_require__(454);
 
 
 /***/ }),
-/* 373 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16709,7 +16792,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 374 */
+/* 375 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -16799,7 +16882,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 375 */
+/* 376 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -16810,7 +16893,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 376 */
+/* 377 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -16839,13 +16922,13 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 377 */
+/* 378 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 378 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16854,7 +16937,7 @@ if (typeof Object.create === 'function') {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(71).Buffer;
-var util = __webpack_require__(379);
+var util = __webpack_require__(380);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -16930,13 +17013,13 @@ if (util && util.inspect && util.inspect.custom) {
 }
 
 /***/ }),
-/* 379 */
+/* 380 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 380 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -16989,7 +17072,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(381);
+__webpack_require__(382);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -17003,7 +17086,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
-/* 381 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -17196,7 +17279,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(22)))
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -17270,7 +17353,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17323,40 +17406,40 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(105);
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(46);
 
 
 /***/ }),
-/* 386 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(54).Transform
 
 
 /***/ }),
-/* 387 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(54).PassThrough
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
-var isUtf8 = __webpack_require__(389);
+var isUtf8 = __webpack_require__(390);
 
 var stripBom = module.exports = function (arg) {
 	if (typeof arg === 'string') {
@@ -17372,7 +17455,7 @@ var stripBom = module.exports = function (arg) {
 };
 
 stripBom.stream = function () {
-	var firstChunk = __webpack_require__(390);
+	var firstChunk = __webpack_require__(391);
 
 	return firstChunk({minSize: 3}, function (chunk, enc, cb) {
 		this.push(stripBom(chunk));
@@ -17383,7 +17466,7 @@ stripBom.stream = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33).Buffer))
 
 /***/ }),
-/* 389 */
+/* 390 */
 /***/ (function(module, exports) {
 
 
@@ -17465,7 +17548,7 @@ exports = module.exports = function(bytes)
 
 
 /***/ }),
-/* 390 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17566,7 +17649,7 @@ module.exports.ctor = ctor;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33).Buffer))
 
 /***/ }),
-/* 391 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var numExp = /^[0-9]+$/;
@@ -17636,7 +17719,7 @@ function getEnv(key, def) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
-/* 392 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getEol = __webpack_require__(156);
@@ -17655,10 +17738,10 @@ module.exports = function(data, param) {
 
 
 /***/ }),
-/* 393 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var csvline=__webpack_require__(394);
+var csvline=__webpack_require__(395);
 /**
  * Convert data chunk to csv lines with cols
  * @param  {[type]} data   [description]
@@ -17676,7 +17759,7 @@ module.exports = function(fileLine, params) {
 
 
 /***/ }),
-/* 394 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getEol = __webpack_require__(156);
@@ -17705,7 +17788,7 @@ module.exports = function(lines, param) {
 
 
 /***/ }),
-/* 395 */
+/* 396 */
 /***/ (function(module, exports) {
 
 module.exports = getDelimiter;
@@ -17733,10 +17816,10 @@ function getDelimiter(rowStr,param) {
 
 
 /***/ }),
-/* 396 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parserMgr = __webpack_require__(397);
+var parserMgr = __webpack_require__(398);
 var CSVError = __webpack_require__(106);
 var numReg = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
 /**
@@ -17882,7 +17965,7 @@ function getConvFunc(head,i,param){
   }
 }
 function setPath(json, path, value) {
-  var _set = __webpack_require__(405);
+  var _set = __webpack_require__(406);
   var pathArr = path.split('.');
   if (pathArr.length === 1) {
     json[path] = value;
@@ -17974,13 +18057,13 @@ function jsonType(item) {
 
 
 /***/ }),
-/* 397 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //implementation
 var registeredParsers = [];
-var Parser = __webpack_require__(398);
-var defaultParser = __webpack_require__(399);
+var Parser = __webpack_require__(399);
+var defaultParser = __webpack_require__(400);
 
 function registerParser (parser) {
   if (parser instanceof Parser && registeredParsers.indexOf(parser) === -1) {
@@ -18049,7 +18132,7 @@ module.exports.getParser = getParser;
 
 
 /***/ }),
-/* 398 */
+/* 399 */
 /***/ (function(module, exports) {
 
 var explicitTypes = ["number", "string"];
@@ -18171,20 +18254,20 @@ module.exports = Parser;
 
 
 /***/ }),
-/* 399 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = [
-  __webpack_require__(400),
   __webpack_require__(401),
   __webpack_require__(402),
   __webpack_require__(403),
-  __webpack_require__(404)
+  __webpack_require__(404),
+  __webpack_require__(405)
 ];
 
 
 /***/ }),
-/* 400 */
+/* 401 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -18202,7 +18285,7 @@ module.exports = {
 
 
 /***/ }),
-/* 401 */
+/* 402 */
 /***/ (function(module, exports) {
 
 var arrReg = /\[([0-9]*)\]/;
@@ -18278,7 +18361,7 @@ module.exports = {
 
 
 /***/ }),
-/* 402 */
+/* 403 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -18290,7 +18373,7 @@ module.exports = {
 
 
 /***/ }),
-/* 403 */
+/* 404 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -18318,7 +18401,7 @@ module.exports = {
 
 
 /***/ }),
-/* 404 */
+/* 405 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -18334,10 +18417,10 @@ module.exports = {
 
 
 /***/ }),
-/* 405 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSet = __webpack_require__(406);
+var baseSet = __webpack_require__(407);
 
 /**
  * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
@@ -18375,14 +18458,14 @@ module.exports = set;
 
 
 /***/ }),
-/* 406 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assignValue = __webpack_require__(407),
-    castPath = __webpack_require__(419),
-    isIndex = __webpack_require__(448),
+var assignValue = __webpack_require__(408),
+    castPath = __webpack_require__(420),
+    isIndex = __webpack_require__(449),
     isObject = __webpack_require__(110),
-    toKey = __webpack_require__(449);
+    toKey = __webpack_require__(450);
 
 /**
  * The base implementation of `_.set`.
@@ -18428,10 +18511,10 @@ module.exports = baseSet;
 
 
 /***/ }),
-/* 407 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseAssignValue = __webpack_require__(408),
+var baseAssignValue = __webpack_require__(409),
     eq = __webpack_require__(160);
 
 /** Used for built-in method references. */
@@ -18462,10 +18545,10 @@ module.exports = assignValue;
 
 
 /***/ }),
-/* 408 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(409);
+var defineProperty = __webpack_require__(410);
 
 /**
  * The base implementation of `assignValue` and `assignMergeValue` without
@@ -18493,7 +18576,7 @@ module.exports = baseAssignValue;
 
 
 /***/ }),
-/* 409 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(107);
@@ -18510,13 +18593,13 @@ module.exports = defineProperty;
 
 
 /***/ }),
-/* 410 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(411),
-    isMasked = __webpack_require__(415),
+var isFunction = __webpack_require__(412),
+    isMasked = __webpack_require__(416),
     isObject = __webpack_require__(110),
-    toSource = __webpack_require__(417);
+    toSource = __webpack_require__(418);
 
 /**
  * Used to match `RegExp`
@@ -18563,7 +18646,7 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 411 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(159),
@@ -18606,7 +18689,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 412 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -18617,7 +18700,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
-/* 413 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(108);
@@ -18669,7 +18752,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 414 */
+/* 415 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -18697,10 +18780,10 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 415 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(416);
+var coreJsData = __webpack_require__(417);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -18723,7 +18806,7 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 416 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(109);
@@ -18735,7 +18818,7 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 417 */
+/* 418 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -18767,7 +18850,7 @@ module.exports = toSource;
 
 
 /***/ }),
-/* 418 */
+/* 419 */
 /***/ (function(module, exports) {
 
 /**
@@ -18786,13 +18869,13 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 419 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArray = __webpack_require__(111),
-    isKey = __webpack_require__(420),
-    stringToPath = __webpack_require__(422),
-    toString = __webpack_require__(445);
+    isKey = __webpack_require__(421),
+    stringToPath = __webpack_require__(423),
+    toString = __webpack_require__(446);
 
 /**
  * Casts `value` to a path array if it's not one.
@@ -18813,7 +18896,7 @@ module.exports = castPath;
 
 
 /***/ }),
-/* 420 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArray = __webpack_require__(111),
@@ -18848,7 +18931,7 @@ module.exports = isKey;
 
 
 /***/ }),
-/* 421 */
+/* 422 */
 /***/ (function(module, exports) {
 
 /**
@@ -18883,10 +18966,10 @@ module.exports = isObjectLike;
 
 
 /***/ }),
-/* 422 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var memoizeCapped = __webpack_require__(423);
+var memoizeCapped = __webpack_require__(424);
 
 /** Used to match property names within property paths. */
 var reLeadingDot = /^\./,
@@ -18917,10 +19000,10 @@ module.exports = stringToPath;
 
 
 /***/ }),
-/* 423 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var memoize = __webpack_require__(424);
+var memoize = __webpack_require__(425);
 
 /** Used as the maximum memoize cache size. */
 var MAX_MEMOIZE_SIZE = 500;
@@ -18949,10 +19032,10 @@ module.exports = memoizeCapped;
 
 
 /***/ }),
-/* 424 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(425);
+var MapCache = __webpack_require__(426);
 
 /** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
@@ -19028,14 +19111,14 @@ module.exports = memoize;
 
 
 /***/ }),
-/* 425 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapCacheClear = __webpack_require__(426),
-    mapCacheDelete = __webpack_require__(440),
-    mapCacheGet = __webpack_require__(442),
-    mapCacheHas = __webpack_require__(443),
-    mapCacheSet = __webpack_require__(444);
+var mapCacheClear = __webpack_require__(427),
+    mapCacheDelete = __webpack_require__(441),
+    mapCacheGet = __webpack_require__(443),
+    mapCacheHas = __webpack_require__(444),
+    mapCacheSet = __webpack_require__(445);
 
 /**
  * Creates a map cache object to store key-value pairs.
@@ -19066,12 +19149,12 @@ module.exports = MapCache;
 
 
 /***/ }),
-/* 426 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hash = __webpack_require__(427),
-    ListCache = __webpack_require__(433),
-    Map = __webpack_require__(439);
+var Hash = __webpack_require__(428),
+    ListCache = __webpack_require__(434),
+    Map = __webpack_require__(440);
 
 /**
  * Removes all key-value entries from the map.
@@ -19093,14 +19176,14 @@ module.exports = mapCacheClear;
 
 
 /***/ }),
-/* 427 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hashClear = __webpack_require__(428),
-    hashDelete = __webpack_require__(429),
-    hashGet = __webpack_require__(430),
-    hashHas = __webpack_require__(431),
-    hashSet = __webpack_require__(432);
+var hashClear = __webpack_require__(429),
+    hashDelete = __webpack_require__(430),
+    hashGet = __webpack_require__(431),
+    hashHas = __webpack_require__(432),
+    hashSet = __webpack_require__(433);
 
 /**
  * Creates a hash object.
@@ -19131,7 +19214,7 @@ module.exports = Hash;
 
 
 /***/ }),
-/* 428 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(72);
@@ -19152,7 +19235,7 @@ module.exports = hashClear;
 
 
 /***/ }),
-/* 429 */
+/* 430 */
 /***/ (function(module, exports) {
 
 /**
@@ -19175,7 +19258,7 @@ module.exports = hashDelete;
 
 
 /***/ }),
-/* 430 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(72);
@@ -19211,7 +19294,7 @@ module.exports = hashGet;
 
 
 /***/ }),
-/* 431 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(72);
@@ -19240,7 +19323,7 @@ module.exports = hashHas;
 
 
 /***/ }),
-/* 432 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(72);
@@ -19269,14 +19352,14 @@ module.exports = hashSet;
 
 
 /***/ }),
-/* 433 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listCacheClear = __webpack_require__(434),
-    listCacheDelete = __webpack_require__(435),
-    listCacheGet = __webpack_require__(436),
-    listCacheHas = __webpack_require__(437),
-    listCacheSet = __webpack_require__(438);
+var listCacheClear = __webpack_require__(435),
+    listCacheDelete = __webpack_require__(436),
+    listCacheGet = __webpack_require__(437),
+    listCacheHas = __webpack_require__(438),
+    listCacheSet = __webpack_require__(439);
 
 /**
  * Creates an list cache object.
@@ -19307,7 +19390,7 @@ module.exports = ListCache;
 
 
 /***/ }),
-/* 434 */
+/* 435 */
 /***/ (function(module, exports) {
 
 /**
@@ -19326,7 +19409,7 @@ module.exports = listCacheClear;
 
 
 /***/ }),
-/* 435 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(73);
@@ -19367,7 +19450,7 @@ module.exports = listCacheDelete;
 
 
 /***/ }),
-/* 436 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(73);
@@ -19392,7 +19475,7 @@ module.exports = listCacheGet;
 
 
 /***/ }),
-/* 437 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(73);
@@ -19414,7 +19497,7 @@ module.exports = listCacheHas;
 
 
 /***/ }),
-/* 438 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(73);
@@ -19446,7 +19529,7 @@ module.exports = listCacheSet;
 
 
 /***/ }),
-/* 439 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(107),
@@ -19459,7 +19542,7 @@ module.exports = Map;
 
 
 /***/ }),
-/* 440 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(74);
@@ -19483,7 +19566,7 @@ module.exports = mapCacheDelete;
 
 
 /***/ }),
-/* 441 */
+/* 442 */
 /***/ (function(module, exports) {
 
 /**
@@ -19504,7 +19587,7 @@ module.exports = isKeyable;
 
 
 /***/ }),
-/* 442 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(74);
@@ -19526,7 +19609,7 @@ module.exports = mapCacheGet;
 
 
 /***/ }),
-/* 443 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(74);
@@ -19548,7 +19631,7 @@ module.exports = mapCacheHas;
 
 
 /***/ }),
-/* 444 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(74);
@@ -19576,10 +19659,10 @@ module.exports = mapCacheSet;
 
 
 /***/ }),
-/* 445 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseToString = __webpack_require__(446);
+var baseToString = __webpack_require__(447);
 
 /**
  * Converts `value` to a string. An empty string is returned for `null`
@@ -19610,11 +19693,11 @@ module.exports = toString;
 
 
 /***/ }),
-/* 446 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(108),
-    arrayMap = __webpack_require__(447),
+    arrayMap = __webpack_require__(448),
     isArray = __webpack_require__(111),
     isSymbol = __webpack_require__(112);
 
@@ -19653,7 +19736,7 @@ module.exports = baseToString;
 
 
 /***/ }),
-/* 447 */
+/* 448 */
 /***/ (function(module, exports) {
 
 /**
@@ -19680,7 +19763,7 @@ module.exports = arrayMap;
 
 
 /***/ }),
-/* 448 */
+/* 449 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -19708,7 +19791,7 @@ module.exports = isIndex;
 
 
 /***/ }),
-/* 449 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isSymbol = __webpack_require__(112);
@@ -19735,7 +19818,7 @@ module.exports = toKey;
 
 
 /***/ }),
-/* 450 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -36827,7 +36910,7 @@ module.exports = toKey;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(161)(module)))
 
 /***/ }),
-/* 451 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, __dirname) {module.exports = workerMgr;
@@ -36985,29 +37068,29 @@ Worker.prototype.sendMsg = function(msg) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), "/"))
 
 /***/ }),
-/* 452 */
+/* 453 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 453 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports.web=__webpack_require__(454);
-module.exports.cli=__webpack_require__(467);
-
-/***/ }),
 /* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(455);
+module.exports.web=__webpack_require__(455);
+module.exports.cli=__webpack_require__(468);
 
 /***/ }),
 /* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var http = __webpack_require__(456);
+module.exports = __webpack_require__(456);
+
+/***/ }),
+/* 456 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var http = __webpack_require__(457);
 var Converter = __webpack_require__(102);
 function startWebServer (args) {
     args = args || {};
@@ -37033,14 +37116,14 @@ module.exports.startWebServer = startWebServer;
 
 
 /***/ }),
-/* 456 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(457)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(458)
 var IncomingMessage = __webpack_require__(164)
-var extend = __webpack_require__(459)
-var statusCodes = __webpack_require__(460)
-var url = __webpack_require__(461)
+var extend = __webpack_require__(460)
+var statusCodes = __webpack_require__(461)
+var url = __webpack_require__(462)
 
 var http = exports
 
@@ -37122,14 +37205,14 @@ http.METHODS = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
-/* 457 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(163)
 var inherits = __webpack_require__(34)
 var response = __webpack_require__(164)
 var stream = __webpack_require__(54)
-var toArrayBuffer = __webpack_require__(458)
+var toArrayBuffer = __webpack_require__(459)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -37452,7 +37535,7 @@ var unsafeHeaders = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33).Buffer, __webpack_require__(10), __webpack_require__(22)))
 
 /***/ }),
-/* 458 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(33).Buffer
@@ -37485,7 +37568,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 459 */
+/* 460 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -37510,7 +37593,7 @@ function extend() {
 
 
 /***/ }),
-/* 460 */
+/* 461 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -37580,7 +37663,7 @@ module.exports = {
 
 
 /***/ }),
-/* 461 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37607,8 +37690,8 @@ module.exports = {
 
 
 
-var punycode = __webpack_require__(462);
-var util = __webpack_require__(463);
+var punycode = __webpack_require__(463);
+var util = __webpack_require__(464);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -37683,7 +37766,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(464);
+    querystring = __webpack_require__(465);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -38319,7 +38402,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 462 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -38858,7 +38941,7 @@ Url.prototype.parseHost = function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(161)(module), __webpack_require__(10)))
 
 /***/ }),
-/* 463 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38881,18 +38964,18 @@ module.exports = {
 
 
 /***/ }),
-/* 464 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(465);
-exports.encode = exports.stringify = __webpack_require__(466);
+exports.decode = exports.parse = __webpack_require__(466);
+exports.encode = exports.stringify = __webpack_require__(467);
 
 
 /***/ }),
-/* 465 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38983,7 +39066,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 466 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39075,13 +39158,13 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 467 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(468);
+module.exports = __webpack_require__(469);
 
 /***/ }),
-/* 468 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -39129,50 +39212,330 @@ module.exports.convertString = convertString;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
-/* 469 */
+/* 470 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export isLive */
-/* unused harmony export refresh */
-async function isLive(api) {
-    const url = 'https://api.civicore.com/cure/api/v3/whoAmI?key=';
-    try {
-        const res = await fetch(url + '{' + api.key + '}');
-        const data = await res.json();
-        if (data.status === 'error') {
-            return false;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert_json; });
+/* unused harmony export StrategyExpert_json */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyRecommendation_json; });
+/* unused harmony export test_json */
+const apiURL = 'http://localhost:8080';
+const fk = __webpack_require__(471);
+
+let JSONInTextForm = '';
+
+function loadJSON(callback) {
+    // If JSON already loaded
+    if (JSONInTextForm) return callback(JSONInTextForm);
+
+    let xobj = new XMLHttpRequest();
+    xobj.overrideMimeType('application/json');
+    xobj.open('GET', 'data/mediations.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState === 4 && xobj.status === 200) {
+            JSONInTextForm = xobj.responseText;
+            callback(xobj.responseText);
         }
-    } catch (e) {
-        console.log('Error on fetch', e);
+    };
+    xobj.send(null);
+}
+
+function getJSONData(callback, done) {
+    return loadJSON(JSONAsText => {
+        let JSONData = JSON.parse(JSONAsText);
+        for (let i = 0; i < JSONData.length; i++) {
+            callback(JSONData[i]);
+        }
+        done();
+    });
+}
+
+function dataIsUpToDate() {}
+
+function ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, callback) {
+    const experts = [];
+    const cache = {};
+
+    getJSONData(handleData, done);
+
+    function handleData(obj) {
+        if (obj === null) return;
+
+        let filtered = obj && (obj.b14OutcomeOfMediation.value === fk['conflict_resolved'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_as_long_as_certain_conditions_are_met'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_temporarily']) && obj.b4primaryReasonForConflict.value === fk[reason] && obj.b6fWeaponIsThoughtToBe.value === fk[weapons_at_scene] && obj.b9aShotsFired.value === fk[shots_fired];
+
+        if (filtered) {
+            if (!cache[obj.users_id.value]) {
+                cache[obj.users_id.value] = experts.length;
+                return experts.push({
+                    id: obj.users_id.value,
+                    count: 1,
+                    full_name: obj.users_id.displayValue
+                });
+            }
+            let pos = cache[obj.users_id.value];
+            experts[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort((a, b) => {
+            return b.count - a.count;
+        });
+        return callback(experts);
     }
 }
 
-async function refresh(api) {
-    const url = 'https://cureviolence.civicore.com/?apiLoginAs=5&json=1';
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-            email: 'ryanwesterberg@gmail.com',
-            password: 'tsgDP#847'
-        }),
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    };
-    try {
-        const res = await fetch(url, options);
-        const data = await res.json();
-        if (data.error === 'true') {
-            throw new Error(data);
+function StrategyExpert_json() {}
+
+function StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback) {
+
+    let numGroupsRange = {};
+    if (no_num_groups) {
+        numGroupsRange.start = 0;
+        numGroupsRange.end = Number.MAX_VALUE;
+    } else if (num_groups === '0') {
+        numGroupsRange.start = 0;
+        numGroupsRange.end = 0;
+    } else if (num_groups === '1') {
+        numGroupsRange.start = 1;
+        numGroupsRange.end = 1;
+    } else if (num_groups === '2+') {
+        numGroupsRange.start = 2;
+        numGroupsRange.end = Number.MAX_VALUE;
+    }
+
+    let numPersonsRange = {};
+    if (no_num_persons) {
+        numPersonsRange.start = 0, numPersonsRange.end = Number.MAX_VALUE;
+    } else if (num_persons === '1-2') {
+        numPersonsRange.start = 1;
+        numPersonsRange.end = 2;
+    } else if (num_persons === '3-19') {
+        numPersonsRange.start = 3;
+        numPersonsRange.end = 19;
+    } else if (num_persons === '20+') {
+        numPersonsRange.start = 20;
+        numPersonsRange.end = Number.MAX_VALUE;
+    }
+
+    let strategies = {
+        strat_buyTime: {
+            true: 0,
+            false: 0
+        },
+        strat_changeLocation: {
+            true: 0,
+            false: 0
+        },
+        strat_constructiveShadowing: {
+            true: 0,
+            false: 0
+        },
+        strat_createdOpportunityToKeepCredibility: {
+            true: 0,
+            false: 0
+        },
+        strat_deescalatingTheSituation: {
+            true: 0,
+            false: 0
+        },
+        strat_focusOnConsequences: {
+            true: 0,
+            false: 0
+        },
+        strat_informationGathering: {
+            true: 0,
+            false: 0
+        },
+        strat_middleMan: {
+            true: 0,
+            false: 0
+        },
+        /*
+        strat_other: {
+            true: 0,
+            false: 0
+        },
+        strat_otherStrategy: {
+            true: 0,
+            false: 0
+        },
+        */
+        strat_reachingAgreementSettlingConflict: {
+            true: 0,
+            false: 0
+        },
+        strat_reasoningProvidingNonviolentAlternativeSolutions: {
+            true: 0,
+            false: 0
+        },
+        strat_usingCVStaffFromOtherSites: {
+            true: 0,
+            false: 0
+        },
+        strat_usingFamilyOrFriendsOfPartiesInvolved: {
+            true: 0,
+            false: 0
+        },
+        strat_usingOtherCVParticipants: {
+            true: 0,
+            false: 0
         }
-        return {
-            key: data.apiKey
-        };
-    } catch (e) {
-        console.log('Error on auth', e);
+    };
+
+    let count = 0;
+
+    getJSONData(handleData, done);
+
+    function handleData(obj) {
+
+        let filtered = obj && (obj.b14OutcomeOfMediation.value === fk['conflict_resolved'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_as_long_as_certain_conditions_are_met'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_temporarily']) && obj.b4primaryReasonForConflict.value === fk[reason] && obj.b6fWeaponIsThoughtToBe.value === fk[weapons_at_scene] && obj.b9aShotsFired.value === fk[shots_fired] && obj.b3numberOfPeopleInvolvedInTheConflict !== '' && obj.b3numberOfPeopleInvolvedInTheConflict.value >= numPersonsRange.start && obj.b3numberOfPeopleInvolvedInTheConflict.value <= numPersonsRange.end && obj.b3ifGroupCliqueGangCcrew.value !== '' && obj.b3ifGroupCliqueGangCcrew.value >= numGroupsRange.start && obj.b3ifGroupCliqueGangCcrew.value <= numGroupsRange.end;
+
+        if (filtered) {
+
+            count++;
+
+            if (obj.strat_buyTime.value == fk.very_effective) {
+                strategies.strat_buyTime.true++;
+            } else if (obj.strat_buyTime.value == fk.somewhat_effective || obj.strat_buyTime.value == fk.not_effective) {
+                strategies.strat_buyTime.false++;
+            }
+
+            if (obj.strat_changeLocation.value == fk.very_effective) {
+                strategies.strat_changeLocation.true++;
+            } else if (obj.strat_changeLocation.value == fk.somewhat_effective || obj.strat_changeLocation.value == fk.not_effective) {
+                strategies.strat_changeLocation.false++;
+            }
+
+            if (obj.strat_constructiveShadowing.value == fk.very_effective) {
+                strategies.strat_constructiveShadowing.true++;
+            } else if (obj.strat_constructiveShadowing.value == fk.somewhat_effective || obj.strat_constructiveShadowing.value == fk.not_effective) {
+                strategies.strat_constructiveShadowing.false++;
+            }
+
+            if (obj.strat_createdOpportunityToKeepCredibility.value == fk.very_effective) {
+                strategies.strat_createdOpportunityToKeepCredibility.true++;
+            } else if (obj.strat_createdOpportunityToKeepCredibility.value == fk.somewhat_effective || obj.strat_createdOpportunityToKeepCredibility.value == fk.not_effective) {
+                strategies.strat_createdOpportunityToKeepCredibility.false++;
+            }
+
+            if (obj.strat_deescalatingTheSituation.value == fk.very_effective) {
+                strategies.strat_deescalatingTheSituation.true++;
+            } else if (obj.strat_deescalatingTheSituation.value == fk.somewhat_effective || obj.strat_deescalatingTheSituation.value == fk.not_effective) {
+                strategies.strat_deescalatingTheSituation.false++;
+            }
+
+            if (obj.strat_focusOnConsequences.value == fk.very_effective) {
+                strategies.strat_focusOnConsequences.true++;
+            } else if (obj.strat_focusOnConsequences.value == fk.somewhat_effective || obj.strat_focusOnConsequences.value == fk.not_effective) {
+                strategies.strat_focusOnConsequences.false++;
+            }
+
+            if (obj.strat_informationGathering.value == fk.very_effective) {
+                strategies.strat_informationGathering.true++;
+            } else if (obj.strat_informationGathering.value == fk.somewhat_effective || obj.strat_informationGathering.value == fk.not_effective) {
+                strategies.strat_informationGathering.false++;
+            }
+
+            if (obj.strat_middleMan.value == fk.very_effective) {
+                strategies.strat_middleMan.true++;
+            } else if (obj.strat_middleMan.value == fk.somewhat_effective || obj.strat_middleMan.value == fk.not_effective) {
+                strategies.strat_middleMan.false++;
+            }
+
+            /*
+            if (obj.strat_other.value == fk.very_effective) {
+                strategies.strat_other.true++
+            } else if (obj.strat_other.value == fk.somewhat_effective || obj.strat_other.value == fk.not_effective) {
+                strategies.strat_other.false++
+            }
+             if (obj.strat_otherStrategy.value == fk.very_effective) {
+                strategies.strat_otherStrategy.true++
+            } else if (obj.strat_otherStrategy.value == fk.somewhat_effective || obj.strat_otherStrategy.value == fk.not_effective) {
+                strategies.strat_otherStrategy.false++
+            }
+            */
+
+            if (obj.strat_reachingAgreementSettlingConflict.value == fk.very_effective) {
+                strategies.strat_reachingAgreementSettlingConflict.true++;
+            } else if (obj.strat_reachingAgreementSettlingConflict.value == fk.somewhat_effective || obj.strat_reachingAgreementSettlingConflict.value == fk.not_effective) {
+                strategies.strat_reachingAgreementSettlingConflict.false++;
+            }
+
+            if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == fk.very_effective) {
+                strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.true++;
+            } else if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == fk.somewhat_effective || obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == fk.not_effective) {
+                strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.false++;
+            }
+
+            if (obj.strat_usingCVStaffFromOtherSites.value == fk.very_effective) {
+                strategies.strat_usingCVStaffFromOtherSites.true++;
+            } else if (obj.strat_usingCVStaffFromOtherSites.value == fk.somewhat_effective || obj.strat_usingCVStaffFromOtherSites.value == fk.not_effective) {
+                strategies.strat_usingCVStaffFromOtherSites.false++;
+            }
+
+            if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == fk.very_effective) {
+                strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.true++;
+            } else if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == fk.somewhat_effective || obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == fk.not_effective) {
+                strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.false++;
+            }
+
+            if (obj.strat_usingOtherCVParticipants.value == fk.very_effective) {
+                strategies.strat_usingOtherCVParticipants.true++;
+            } else if (obj.strat_usingOtherCVParticipants.value == fk.somewhat_effective || obj.strat_usingOtherCVParticipants.value == fk.not_effective) {
+                strategies.strat_usingOtherCVParticipants.false++;
+            }
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+
+        if (count < 5 && no_num_persons && no_num_groups) {
+            return callback({});
+        } else if (count < 5 && no_num_persons) {
+            let no_num_groups = true;
+            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
+        } else if (count < 5) {
+            let no_num_persons = true;
+            let no_num_groups = false;
+            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
+        }
+
+        return callback(strategies);
     }
 }
+
+
+
+/***/ }),
+/* 471 */
+/***/ (function(module, exports) {
+
+const foreign_keys = {
+    'Yes': '426',
+    'No': '427',
+    conflict_resolved: '730',
+    conflict_resolved_as_long_as_certain_conditions_are_met: '1038',
+    conflict_resolved_temporarily: '731',
+    'Altercation (personal)': '709',
+    'Narcotics': '710',
+    'Robbery/Jumped/Mugged': '711',
+    'Burglary': '712',
+    'Other (specify):': '713',
+    'Domestic Violence': '989',
+    'Child Abuse': '990',
+    'Unknown': '991',
+    'Group/clique/gang/crew/etc.': '992',
+    very_effective: 729,
+    somewhat_effective: 728,
+    not_effective: 727,
+    did_not_use: 726
+};
+
+module.exports = foreign_keys;
 
 /***/ })
 /******/ ]);

@@ -1,13 +1,35 @@
-import { getAPIData, getCSVData } from './get_data.js'
+import csv from 'csvtojson'
 
-getAPIData({ type: 'getAllUsers' }, data => {
-    console.log(data)
-})
+let csvInTextForm = ''
 
-function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
+function loadCSV(callback) {
+    // If csv already loaded
+    if (csvInTextForm) return callback(csvInTextForm)
+
+    let xobj = new XMLHttpRequest()
+    xobj.overrideMimeType('application/css')
+    xobj.open('GET', 'data/mediations.csv', true)
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState === 4 && xobj.status === 200) {
+            csvInTextForm = xobj.responseText
+            callback(xobj.responseText)
+        }
+    }
+    xobj.send(null)
+}
+
+function getCSVData(callback, done) {
+    return loadCSV(csvAsText => {
+        csv().fromString(csvAsText)
+            .on('json', callback)
+            .on('done', done)
+    })
+}
+
+function ConflictExpert_csv({ reason, weapons_at_scene, shots_fired }, callback) {
     const experts = []
     const cache = {}
-    
+
     getCSVData(handleData, done)
 
     function handleData(obj) {
@@ -22,7 +44,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
             obj.weapon === weapons_at_scene &&
             obj.shots === shots_fired
         )
-        
+
         if (filtered) {
             if (!cache[obj.id]) {
                 cache[obj.id] = experts.length
@@ -47,7 +69,7 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, callback) {
     }
 }
 
-function StrategyExpert({ strategy }, callback) {
+function StrategyExpert_csv({ strategy }, callback) {
     const experts = []
     const cache = {}
     getCSVData(handleData, done)
@@ -89,7 +111,7 @@ function StrategyExpert({ strategy }, callback) {
     }
 }
 
-function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, callback) {
+function StrategyRecommendation_csv({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, callback) {
     const cache = {}
     const recommendations = []
     const strategies = [
@@ -144,7 +166,6 @@ function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_per
             //checkStrategies(obj) // 'Very Effective' or 'Somewhat Effective'
         )
         if (filtered) {
-            console.log(obj)
             if (!cache[obj.strategy]) {
                 cache[obj.strategy] = recommendations.length
                 return recommendations.push({
@@ -166,4 +187,4 @@ function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_per
     }
 }
 
-export { ConflictExpert, StrategyExpert, StrategyRecommendation }
+export { ConflictExpert_csv, StrategyExpert_csv, StrategyRecommendation_csv }

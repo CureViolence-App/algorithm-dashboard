@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Algorithm Helper</title>
+    <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://gitcdn.xyz/repo/filamentgroup/select-css/master/src/select-css.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="css/styles.css">
@@ -18,7 +18,7 @@
             <div class="options">
                 <div class="option_main">
                     <div class="option_icon">
-                        <img src="img/algorithm.png">
+                        <img src="img/cure-violence-logo.png">
                     </div>
                     <div class="option">
                         <label class="option_label" for="algorithm">Algorithm</label>
@@ -63,6 +63,7 @@
                         <option value="Other (specify):">Other (specify):</option>
                     </select>
                 </div>
+
                 <div class="option">
                     <label class="option_label" for="weapons_at_scene">Weapons at scene?</label>
                     <select class="option_select" name="weapons_at_scene">
@@ -101,15 +102,21 @@
             </div>
             <div class="card_right">
                 <div>
-                    <h2 class="data-header">Snapshot Data<span class="loading-display"></span></h2>
+                    <h2 class="data-header">Snapshot CSV Data<span id="loading-csv" class="loading-display"></span></h2>
                     <div class="data-container">
-                        <ol id="data"></ol>
+                        <ol id="data-csv"></ol>
                     </div>
                 </div>
                 <div>
-                    <h2 class="data-header">Live Data<span class="loading-display"></span></h2>
+                    <h2 class="data-header">Snapshot API Data<span id="loading-api-snap" class="loading-display"></span></h2>
                     <div class="data-container">
-                        <ol id="data-live"></ol>
+                        <ol id="data-api-snap"></ol>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="data-header">Live API Data<span id="loading-api-live" class="loading-display"></span></h2>
+                    <div class="data-container">
+                        <ol id="data-api-live"></ol>
                     </div>
                 </div>
             </div>
