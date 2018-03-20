@@ -10,16 +10,16 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, csvCallback, 
     ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, (experts) => {
         return apiSnapCallback(experts)
     })
-    ConflictExpert_api({ reason, weapons_at_scene, shots_fired }, (experts) => {
-        return apiCallback(experts)
-    })
 }
 
 function StrategyExpert({ strategy }, callback) {
 }
 
 function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, csvCallback, apiSnapCallback, apiCallback) {
-    StrategyRecommendation_json({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, (experts) => {
+    StrategyRecommendation_csv({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
+        csvCallback(experts)
+    })
+    StrategyRecommendation_json({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
         apiSnapCallback(experts)
     })
 }
