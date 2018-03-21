@@ -4,15 +4,21 @@ import { ConflictExpert_json, StrategyExpert_json, StrategyRecommendation_json }
 
 
 function ConflictExpert({ reason, weapons_at_scene, shots_fired }, csvCallback, apiSnapCallback) {
-    ConflictExpert_csv({ reason, weapons_at_scene, shots_fired}, (experts) => {
+    ConflictExpert_csv({ reason, weapons_at_scene, shots_fired}, experts => {
         return csvCallback(experts)
     })
-    ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, (experts) => {
+    ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, experts => {
         return apiSnapCallback(experts)
     })
 }
 
-function StrategyExpert({ strategy }, callback) {
+function StrategyExpert({ strategy }, csvCallback, apiSnapCallback) {
+    StrategyExpert_csv({ strategy }, experts => {
+        csvCallback(experts)
+    })
+    StrategyExpert_json({ strategy }, experts => {
+        apiSnapCallback(experts)
+    })
 }
 
 function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, csvCallback, apiSnapCallback, apiCallback) {

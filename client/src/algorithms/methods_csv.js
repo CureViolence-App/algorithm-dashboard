@@ -211,7 +211,7 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
 
     let count = 0;
 
-    getJSONData(handleData, done)
+    getCSVData(handleData, done)
 
     function handleData(obj) {
 
@@ -267,21 +267,21 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
                 strategies.strat_deescalatingTheSituation.false++
             }
 
-            if (obj.strat_focusOnConsequences.value == 'Very Effective') {
+            if (obj.focus_on_consequences == 'Very Effective') {
                 strategies.strat_focusOnConsequences.true++
-            } else if (obj.strat_focusOnConsequences.value == 'Somewhat Effective' || obj.strat_focusOnConsequences.value == 'Not Effective') {
+            } else if (obj.focus_on_consequences == 'Somewhat Effective' || obj.focus_on_consequences == 'Not Effective') {
                 strategies.strat_focusOnConsequences.false++
             }
 
-            if (obj.strat_informationGathering.value == 'Very Effective') {
+            if (obj.information_gathering == 'Very Effective') {
                 strategies.strat_informationGathering.true++
-            } else if (obj.strat_informationGathering.value == 'Somewhat Effective' || obj.strat_informationGathering.value == 'Not Effective') {
+            } else if (obj.information_gathering == 'Somewhat Effective' || obj.information_gathering == 'Not Effective') {
                 strategies.strat_informationGathering.false++
             }
 
-            if (obj.strat_middleMan.value == 'Very Effective') {
+            if (obj.middle_man == 'Very Effective') {
                 strategies.strat_middleMan.true++
-            } else if (obj.strat_middleMan.value == 'Somewhat Effective' || obj.strat_middleMan.value == 'Not Effective') {
+            } else if (obj.middle_man == 'Somewhat Effective' || obj.middle_man == 'Not Effective') {
                 strategies.strat_middleMan.false++
             }
 
@@ -299,33 +299,33 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
             }
             */
 
-            if (obj.strat_reachingAgreementSettlingConflict.value == 'Very Effective') {
+            if (obj.reaching_agreement == 'Very Effective') {
                 strategies.strat_reachingAgreementSettlingConflict.true++
-            } else if (obj.strat_reachingAgreementSettlingConflict.value == 'Somewhat Effective' || obj.strat_reachingAgreementSettlingConflict.value == 'Not Effective') {
+            } else if (obj.reaching_agreement == 'Somewhat Effective' || obj.reaching_agreement == 'Not Effective') {
                 strategies.strat_reachingAgreementSettlingConflict.false++
             }
 
-            if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Very Effective') {
+            if (obj.reasoning == 'Very Effective') {
                 strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.true++
-            } else if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Somewhat Effective' || obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Not Effective') {
+            } else if (obj.reasoning == 'Somewhat Effective' || obj.reasoning == 'Not Effective') {
                 strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.false++
             }
 
-            if (obj.strat_usingCVStaffFromOtherSites.value == 'Very Effective') {
+            if (obj.other_cv_staff == 'Very Effective') {
                 strategies.strat_usingCVStaffFromOtherSites.true++
-            } else if (obj.strat_usingCVStaffFromOtherSites.value == 'Somewhat Effective' || obj.strat_usingCVStaffFromOtherSites.value == 'Not Effective') {
+            } else if (obj.other_cv_staff == 'Somewhat Effective' || obj.other_cv_staff == 'Not Effective') {
                 strategies.strat_usingCVStaffFromOtherSites.false++
             }
 
-            if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Very Effective') {
+            if (obj.family_friends == 'Very Effective') {
                 strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.true++
-            } else if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Somewhat Effective' || obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Not Effective') {
+            } else if (obj.family_friends == 'Somewhat Effective' || obj.family_friends == 'Not Effective') {
                 strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.false++
             }
 
-            if (obj.strat_usingOtherCVParticipants.value == 'Very Effective') {
+            if (obj.cv_participants == 'Very Effective') {
                 strategies.strat_usingOtherCVParticipants.true++
-            } else if (obj.strat_usingOtherCVParticipants.value == 'Somewhat Effective' || obj.strat_usingOtherCVParticipants.value == 'Not Effective') {
+            } else if (obj.cv_participants == 'Somewhat Effective' || obj.cv_participants == 'Not Effective') {
                 strategies.strat_usingOtherCVParticipants.false++
             }
         }
@@ -338,11 +338,11 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
             return callback({})
         } else if (count < 5 && no_num_persons) {
             let no_num_groups = true
-            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback)
+            return StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback)
         } else if (count < 5)  {
             let no_num_persons = true
             let no_num_groups = false
-            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback)
+            return StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback)
         }
 
         return callback(strategies)

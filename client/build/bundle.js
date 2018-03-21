@@ -16313,7 +16313,7 @@ function runAlgorithm() {
     csvLoading.classList.add('loading');
     apiSnapLoading.classList.add('loading');
 
-    apiLiveDisplay.innerHTML = '';
+    csvDisplay.innerHTML = '';
     apiSnapDisplay.innerHTML = '';
 
     let inputs = getAlgorithmInputs();
@@ -16343,13 +16343,20 @@ function runAlgorithm() {
         case 'Strategy Expert':
             Object(__WEBPACK_IMPORTED_MODULE_0__algorithms_algorithms__["b" /* StrategyExpert */])({
                 strategy: inputs.strategy
-            }, data => {
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
-                        <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
+            }, csvData => {
+                for (let i of csvData) {
+                    csvDisplay.innerHTML += `
+                        <li>${i.first_name} ${i.last_name}<span class="data-count">${i.count}</span></li>
                     `;
                 }
-                loadingDisplay.classList.remove('loading');
+                csvLoading.classList.remove('loading');
+            }, apiSnapData => {
+                for (let i of apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li>${i.full_name}<span class="data-count">${i.count}</span></li>
+                    `;
+                }
+                apiSnapLoading.classList.remove('loading');
             });
             break;
         case 'Strategy Recommendation':
@@ -16368,6 +16375,7 @@ function runAlgorithm() {
                     <li><span class="overflow">${i}</span><span class="data-count">${Math.round(csvData[i].true / (csvData[i].true + csvData[i].false) * 100) + '%'}</span></li>
                     `;
                 }
+                csvLoading.classList.remove('loading');
             }, apiSnapData => {
                 for (let i in apiSnapData) {
                     apiSnapDisplay.innerHTML += `
@@ -16409,13 +16417,20 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, csvCallback, 
     });
 }
 
-function StrategyExpert({ strategy }, callback) {}
-
-function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, csvCallback, apiSnapCallback, apiCallback) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__methods_csv__["b" /* StrategyRecommendation_csv */])({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
+function StrategyExpert({ strategy }, csvCallback, apiSnapCallback) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__methods_csv__["b" /* StrategyExpert_csv */])({ strategy }, experts => {
         csvCallback(experts);
     });
-    Object(__WEBPACK_IMPORTED_MODULE_2__methods_json__["b" /* StrategyRecommendation_json */])({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
+    Object(__WEBPACK_IMPORTED_MODULE_2__methods_json__["b" /* StrategyExpert_json */])({ strategy }, experts => {
+        apiSnapCallback(experts);
+    });
+}
+
+function StrategyRecommendation({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, csvCallback, apiSnapCallback, apiCallback) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__methods_csv__["c" /* StrategyRecommendation_csv */])({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
+        csvCallback(experts);
+    });
+    Object(__WEBPACK_IMPORTED_MODULE_2__methods_json__["c" /* StrategyRecommendation_json */])({ reason, weapons_at_scene, shots_fired, num_persons, num_groups }, experts => {
         apiSnapCallback(experts);
     });
 }
@@ -16510,8 +16525,8 @@ function StrategyRecommendation_api() {}
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert_csv; });
-/* unused harmony export StrategyExpert_csv */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyRecommendation_csv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyExpert_csv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return StrategyRecommendation_csv; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson__ = __webpack_require__(372);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_csvtojson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_csvtojson__);
 
@@ -16702,7 +16717,7 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
 
     let count = 0;
 
-    getJSONData(handleData, done);
+    getCSVData(handleData, done);
 
     function handleData(obj) {
 
@@ -16736,27 +16751,27 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
                 strategies.strat_createdOpportunityToKeepCredibility.false++;
             }
 
-            if (obj.strat_deescalatingTheSituation.value == 'Very Effective') {
+            if (obj.de_escalating == 'Very Effective') {
                 strategies.strat_deescalatingTheSituation.true++;
-            } else if (obj.strat_deescalatingTheSituation.value == 'Somewhat Effective' || obj.strat_deescalatingTheSituation.value == 'Not Effective') {
+            } else if (obj.de_escalating == 'Somewhat Effective' || obj.de_escalating == 'Not Effective') {
                 strategies.strat_deescalatingTheSituation.false++;
             }
 
-            if (obj.strat_focusOnConsequences.value == 'Very Effective') {
+            if (obj.focus_on_consequences == 'Very Effective') {
                 strategies.strat_focusOnConsequences.true++;
-            } else if (obj.strat_focusOnConsequences.value == 'Somewhat Effective' || obj.strat_focusOnConsequences.value == 'Not Effective') {
+            } else if (obj.focus_on_consequences == 'Somewhat Effective' || obj.focus_on_consequences == 'Not Effective') {
                 strategies.strat_focusOnConsequences.false++;
             }
 
-            if (obj.strat_informationGathering.value == 'Very Effective') {
+            if (obj.information_gathering == 'Very Effective') {
                 strategies.strat_informationGathering.true++;
-            } else if (obj.strat_informationGathering.value == 'Somewhat Effective' || obj.strat_informationGathering.value == 'Not Effective') {
+            } else if (obj.information_gathering == 'Somewhat Effective' || obj.information_gathering == 'Not Effective') {
                 strategies.strat_informationGathering.false++;
             }
 
-            if (obj.strat_middleMan.value == 'Very Effective') {
+            if (obj.middle_man == 'Very Effective') {
                 strategies.strat_middleMan.true++;
-            } else if (obj.strat_middleMan.value == 'Somewhat Effective' || obj.strat_middleMan.value == 'Not Effective') {
+            } else if (obj.middle_man == 'Somewhat Effective' || obj.middle_man == 'Not Effective') {
                 strategies.strat_middleMan.false++;
             }
 
@@ -16773,33 +16788,33 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
             }
             */
 
-            if (obj.strat_reachingAgreementSettlingConflict.value == 'Very Effective') {
+            if (obj.reaching_agreement == 'Very Effective') {
                 strategies.strat_reachingAgreementSettlingConflict.true++;
-            } else if (obj.strat_reachingAgreementSettlingConflict.value == 'Somewhat Effective' || obj.strat_reachingAgreementSettlingConflict.value == 'Not Effective') {
+            } else if (obj.reaching_agreement == 'Somewhat Effective' || obj.reaching_agreement == 'Not Effective') {
                 strategies.strat_reachingAgreementSettlingConflict.false++;
             }
 
-            if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Very Effective') {
+            if (obj.reasoning == 'Very Effective') {
                 strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.true++;
-            } else if (obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Somewhat Effective' || obj.strat_reasoningProvidingNonviolentAlternativeSolutions.value == 'Not Effective') {
+            } else if (obj.reasoning == 'Somewhat Effective' || obj.reasoning == 'Not Effective') {
                 strategies.strat_reasoningProvidingNonviolentAlternativeSolutions.false++;
             }
 
-            if (obj.strat_usingCVStaffFromOtherSites.value == 'Very Effective') {
+            if (obj.other_cv_staff == 'Very Effective') {
                 strategies.strat_usingCVStaffFromOtherSites.true++;
-            } else if (obj.strat_usingCVStaffFromOtherSites.value == 'Somewhat Effective' || obj.strat_usingCVStaffFromOtherSites.value == 'Not Effective') {
+            } else if (obj.other_cv_staff == 'Somewhat Effective' || obj.other_cv_staff == 'Not Effective') {
                 strategies.strat_usingCVStaffFromOtherSites.false++;
             }
 
-            if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Very Effective') {
+            if (obj.family_friends == 'Very Effective') {
                 strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.true++;
-            } else if (obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Somewhat Effective' || obj.strat_usingFamilyOrFriendsOfPartiesInvolved.value == 'Not Effective') {
+            } else if (obj.family_friends == 'Somewhat Effective' || obj.family_friends == 'Not Effective') {
                 strategies.strat_usingFamilyOrFriendsOfPartiesInvolved.false++;
             }
 
-            if (obj.strat_usingOtherCVParticipants.value == 'Very Effective') {
+            if (obj.cv_participants == 'Very Effective') {
                 strategies.strat_usingOtherCVParticipants.true++;
-            } else if (obj.strat_usingOtherCVParticipants.value == 'Somewhat Effective' || obj.strat_usingOtherCVParticipants.value == 'Not Effective') {
+            } else if (obj.cv_participants == 'Somewhat Effective' || obj.cv_participants == 'Not Effective') {
                 strategies.strat_usingOtherCVParticipants.false++;
             }
         }
@@ -16812,11 +16827,11 @@ function StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_a
             return callback({});
         } else if (count < 5 && no_num_persons) {
             let no_num_groups = true;
-            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
+            return StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
         } else if (count < 5) {
             let no_num_persons = true;
             let no_num_groups = false;
-            return StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
+            return StrategyRecommendation_csv({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback);
         }
 
         return callback(strategies);
@@ -39409,8 +39424,8 @@ module.exports.convertString = convertString;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConflictExpert_json; });
-/* unused harmony export StrategyExpert_json */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyRecommendation_json; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StrategyExpert_json; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return StrategyRecommendation_json; });
 /* unused harmony export test_json */
 const apiURL = 'http://localhost:8080';
 const fk = __webpack_require__(471);
@@ -39479,7 +39494,52 @@ function ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, callback
     }
 }
 
-function StrategyExpert_json() {}
+function StrategyExpert_json({ strategy }, callback) {
+    const experts = [];
+    const cache = {};
+
+    const strat_convert = {
+        buy_time: 'strat_buyTime',
+        change_location: 'strat_changeLocation',
+        constructive_shadowing: 'strat_constructiveShadowing',
+        keep_credibility: 'strat_createdOpportunityToKeepCredibility',
+        de_escalating: 'strat_deescalatingTheSituation',
+        focus_on_consequences: 'strat_focusOnConsequences',
+        information_gathering: 'strat_informationGathering',
+        middle_man: 'strat_middleMan',
+        reaching_agreement: 'strat_reachingAgreementSettlingConflict',
+        reasoning: 'strat_reasoningProvidingNonviolentAlternativeSolutions',
+        other_cv_staff: 'strat_usingCVStaffFromOtherSites',
+        family_friends: 'strat_usingFamilyOrFriendsOfPartiesInvolved',
+        cv_participants: 'strat_usingOtherCVParticipants'
+    };
+
+    getJSONData(handleData, done);
+
+    function handleData(obj) {
+        let filtered = obj && (obj.b14OutcomeOfMediation.value === fk['conflict_resolved'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_as_long_as_certain_conditions_are_met'] || obj.b14OutcomeOfMediation.value === fk['conflict_resolved_temporarily']) && (obj[strat_convert[strategy]].value == fk['very_effective'] || obj[strat_convert[strategy]].value == fk['somewhat_effective']);
+        if (filtered) {
+            if (!cache[obj.users_id.value]) {
+                cache[obj.users_id.value] = experts.length;
+                return experts.push({
+                    id: obj.users_id.value,
+                    count: 1,
+                    full_name: obj.users_id.displayValue
+                });
+            }
+            let pos = cache[obj.users_id.value];
+            experts[pos].count++;
+        }
+    }
+
+    function done(err) {
+        if (err) return console.log(err);
+        experts.sort((a, b) => {
+            return b.count - a.count;
+        });
+        return callback(experts);
+    }
+}
 
 function StrategyRecommendation_json({ reason, num_groups, num_persons, weapons_at_scene, shots_fired, no_num_persons, no_num_groups }, callback) {
 

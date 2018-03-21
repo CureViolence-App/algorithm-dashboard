@@ -61,7 +61,7 @@ function runAlgorithm() {
     csvLoading.classList.add('loading')
     apiSnapLoading.classList.add('loading')
 
-    apiLiveDisplay.innerHTML = ''
+    csvDisplay.innerHTML = ''
     apiSnapDisplay.innerHTML = ''
 
     let inputs = getAlgorithmInputs()
@@ -91,13 +91,20 @@ function runAlgorithm() {
         case 'Strategy Expert':
             StrategyExpert({
                 strategy: inputs.strategy
-            }, data => {
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
-                        <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
+            }, csvData => {
+                for (let i of csvData) {
+                    csvDisplay.innerHTML += `
+                        <li>${i.first_name} ${i.last_name}<span class="data-count">${i.count}</span></li>
                     `
                 }
-                loadingDisplay.classList.remove('loading')
+                csvLoading.classList.remove('loading')
+            }, apiSnapData => {
+                for (let i of apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li>${i.full_name}<span class="data-count">${i.count}</span></li>
+                    `
+                }
+                apiSnapLoading.classList.remove('loading')
             })
             break
         case 'Strategy Recommendation':
@@ -116,6 +123,7 @@ function runAlgorithm() {
                     <li><span class="overflow">${i}</span><span class="data-count">${Math.round((csvData[i].true/(csvData[i].true+csvData[i].false))*100) + '%'}</span></li>
                     `
                 }
+                csvLoading.classList.remove('loading')
             }, apiSnapData => {
                 for (let i in apiSnapData) {
                     apiSnapDisplay.innerHTML += `
