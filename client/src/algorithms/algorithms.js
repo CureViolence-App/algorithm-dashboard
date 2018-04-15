@@ -10,9 +10,6 @@ function ConflictExpert({ reason, weapons_at_scene, shots_fired }, csvCallback, 
     ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, (experts) => {
         return apiSnapCallback(experts)
     })
-    ConflictExpert_api({ reason, weapons_at_scene, shots_fired }, (experts) => {
-        return apiCallback(experts)
-    })
 }
 
 function StrategyExpert({ strategy }, callback) {

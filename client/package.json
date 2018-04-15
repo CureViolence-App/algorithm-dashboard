@@ -1,4 +1,3 @@
-<<<<<<< HEAD:client/package.json
 {
   "name": "algorithims",
   "version": "1.0.0",
@@ -24,28 +23,3 @@
     "webpack": "^3.10.0"
   }
 }
-=======
-{
-  "name": "algorithims",
-  "version": "1.0.0",
-  "description": "",
-  "main": "algorithm.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ./build -p 4000"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "http-serve": "^1.0.1",
-    "http-server": "^0.11.1",
-    "webpack": "^3.10.0"
-  }
-}
->>>>>>> 35ac0ec57b7292189ee6668c3891ebbdfa4ac67b:package.json
