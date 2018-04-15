@@ -78,39 +78,38 @@ function ConflictExpert_json({ reason, weapons_at_scene, shots_fired }, callback
 }
 
 function StrategyExpert_json({ strategy }, callback) {
-
-    let convert = {
-                      buy_time: 'strat_buyTime',
-               change_location: 'strat_changeLocation',
-        constructive_shadowing: 'strat_constructiveShadowing',
-              keep_credibility: 'strat_createdOpportunityToKeepCredibility',
-                 de_escalating: 'strat_createdOpportunityToKeepCredibility',
-         focus_on_consequences: 'strat_focusOnConsequences',
-         information_gathering: 'strat_informationGathering',
-                    middle_man: 'strat_middleMan',
-                         other: 'strat_other',
-            reaching_agreement: 'strat_reachingAgreementSettlingConflict',
-                     reasoning: 'strat_reasoningProvidingNonviolentAlternativeSolutions',
-                other_cv_staff: 'strat_usingCVStaffFromOtherSites',
-                family_friends: 'strat_usingFamilyOrFriendsOfPartiesInvolved',
-               cv_participants: 'strat_usingOtherCVParticipants'
-    }
-
     const experts = []
     const cache = {}
-    getCSVData(handleData, done)
+
+    const strat_convert = {
+        buy_time: 'strat_buyTime',
+        change_location: 'strat_changeLocation',
+        constructive_shadowing: 'strat_constructiveShadowing',
+        keep_credibility: 'strat_createdOpportunityToKeepCredibility',
+        de_escalating: 'strat_deescalatingTheSituation',
+        focus_on_consequences: 'strat_focusOnConsequences',
+        information_gathering: 'strat_informationGathering',
+        middle_man: 'strat_middleMan',
+        reaching_agreement: 'strat_reachingAgreementSettlingConflict',
+        reasoning: 'strat_reasoningProvidingNonviolentAlternativeSolutions',
+        other_cv_staff: 'strat_usingCVStaffFromOtherSites',
+        family_friends: 'strat_usingFamilyOrFriendsOfPartiesInvolved',
+        cv_participants: 'strat_usingOtherCVParticipants'
+    }
+
+    getJSONData(handleData, done)
 
     function handleData(obj) {
         let filtered = (
-            obj.name === 'Chicago' &&
+            obj &&
             (
                 obj.b14OutcomeOfMediation.value === fk['conflict_resolved'] ||
                 obj.b14OutcomeOfMediation.value === fk['conflict_resolved_as_long_as_certain_conditions_are_met'] ||
                 obj.b14OutcomeOfMediation.value === fk['conflict_resolved_temporarily']
             ) &&
             (
-                obj[convert[strategy]] === 'Very Effective' ||
-                obj[convert[strategy]] === 'Somewhat Effective'
+                obj[strat_convert[strategy]].value == fk['very_effective'] ||
+                obj[strat_convert[strategy]].value == fk['somewhat_effective']
             )
         )
         if (filtered) {
@@ -119,7 +118,7 @@ function StrategyExpert_json({ strategy }, callback) {
                 return experts.push({
                     id: obj.users_id.value,
                     count: 1,
-                    full_name: obj.users_id.displayValue,
+                    full_name: obj.users_id.displayValue
                 })
             }
             let pos = cache[obj.users_id.value]

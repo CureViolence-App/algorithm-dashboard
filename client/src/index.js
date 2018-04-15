@@ -10,10 +10,8 @@ showInputs({srcElement:{value: 'Conflict Expert'}})
 
 let csvLoading     = document.querySelector('#loading-csv')
 let apiSnapLoading = document.querySelector('#loading-api-snap')
-let apiLiveLoading = document.querySelector('#loading-api-live')
-let csvDisplay     = document.querySelector('#data-csv')
+let csvDisplay = document.querySelector('#data-csv')
 let apiSnapDisplay = document.querySelector('#data-api-snap')
-let apiLiveDisplay = document.querySelector('#data-api-live')
 
 function searchNodeListByName(nodelist, name) {
     for (let i of nodelist) {
@@ -62,7 +60,9 @@ function getAlgorithmInputs() {
 function runAlgorithm() {
     csvLoading.classList.add('loading')
     apiSnapLoading.classList.add('loading')
-    apiLiveLoading.classList.add('loading')
+
+    csvDisplay.innerHTML = ''
+    apiSnapDisplay.innerHTML = ''
 
     let inputs = getAlgorithmInputs()
 
@@ -73,7 +73,6 @@ function runAlgorithm() {
                 weapons_at_scene: inputs.weapons_at_scene,
                 shots_fired: inputs.shots_fired
             }, csvData => {
-                csvDisplay.innerHTML = ''
                 for (let i of csvData) {
                     csvDisplay.innerHTML += `
                         <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
@@ -81,7 +80,6 @@ function runAlgorithm() {
                 }
                 csvLoading.classList.remove('loading')
             }, apiSnapData => {
-                apiSnapDisplay.innerHTML = ''
                 for (let i of apiSnapData) {
                     apiSnapDisplay.innerHTML += `
                         <li>${i.full_name }<span class="data-count">${i.count}</span></li>
@@ -93,14 +91,20 @@ function runAlgorithm() {
         case 'Strategy Expert':
             StrategyExpert({
                 strategy: inputs.strategy
-            }, data => {
-                dataDisplay.innerHTML = ''
-                for (let i of data) {
-                    dataDisplay.innerHTML += `
-                        <li>${i.first_name} ${i.last_name} <span class="data-count">${i.count}</span></li>
+            }, csvData => {
+                for (let i of csvData) {
+                    csvDisplay.innerHTML += `
+                        <li>${i.first_name} ${i.last_name}<span class="data-count">${i.count}</span></li>
                     `
                 }
-                loadingDisplay.classList.remove('loading')
+                csvLoading.classList.remove('loading')
+            }, apiSnapData => {
+                for (let i of apiSnapData) {
+                    apiSnapDisplay.innerHTML += `
+                        <li>${i.full_name}<span class="data-count">${i.count}</span></li>
+                    `
+                }
+                apiSnapLoading.classList.remove('loading')
             })
             break
         case 'Strategy Recommendation':
@@ -113,17 +117,23 @@ function runAlgorithm() {
                 no_num_persons: false,
                 no_num_groups: false
             }, csvData => {
-                
+                csvDisplay.innerHTML = ''
+                for (let i in csvData) {
+                    csvDisplay.innerHTML += `
+                    <li><span class="overflow">${i}</span><span class="data-count">${Math.round((csvData[i].true/(csvData[i].true+csvData[i].false))*100) + '%'}</span></li>
+                    `
+                }
+                csvLoading.classList.remove('loading')
             }, apiSnapData => {
-                apiSnapDisplay.innerHTML = ''
                 for (let i in apiSnapData) {
                     apiSnapDisplay.innerHTML += `
-                        <li><span class="overflow">${i}</span><span class="data-count">${Math.round((apiSnapData[i].true/(apiSnapData[i].true+apiSnapData[i].false))*100) + '%'}</span></li>
+                        <li>
+                            <span class="overflow">${i}</span>
+                            <span class="data-count">${Math.round((apiSnapData[i].true/(apiSnapData[i].true+apiSnapData[i].false))*100) + '%'}</span>
+                        </li>
                     `
                 }
                 apiSnapLoading.classList.remove('loading')
-            }, apiLiveData => {
-
             })
             break
         default:
