@@ -1,7 +1,7 @@
 const fs = require('fs')
 const fetch = require('node-fetch')
 
-const apiURL = 'http://localhost:8080'
+const apiURL = 'https://cure-violence.herokuapp.com/'
 
 const apiCalls = {
     All: {
