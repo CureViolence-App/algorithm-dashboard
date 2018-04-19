@@ -22,7 +22,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "csv2json": "^1.4.2",
+    "csvtojson": "^1.1.9",
     "node-fetch": "^2.1.2"
   }
 }
